@@ -101,5 +101,5 @@ M=.|=.|.|=.|=|=.
 
    What is the total risk level for the smallest rectangle that includes
    0,0 and the target's coordinates?
-```
 
+```
