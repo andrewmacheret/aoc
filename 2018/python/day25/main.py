@@ -1,28 +1,49 @@
+from collections import defaultdict
+from timeit import timeit
+
 class Solution:
   def load(self, filename):
     self.filename = filename
     with open(filename) as f: lines = f.read().splitlines()
-    self.points = [[int(i) for i in line.strip().split(',')] for line in lines]
+    self.points = sorted([int(i) for i in line.strip().split(',')] for line in lines)
     return self
 
-  def distance(self, (x1,y1,z1,t1), (x2,y2,z2,t2)):
-    return abs(x1-x2) + abs(y1-y2) + abs(z1-z2) + abs(t1-t2)
+  def prepare_graph(self):
+    self.n = len(self.points)
+    self.graph = defaultdict(list)
+    for i in xrange(self.n):
+      x1,y1,z1,t1 = self.points[i]
+      for j in xrange(i+1,self.n):
+        x2,y2,z2,t2 = self.points[j]
+        x = x2-x1
+        if x > 3: break
+        if x + abs(y2-y1) + abs(z2-z1) + abs(t2-t1) <= 3:
+          self.graph[i].append(j)
+          self.graph[j].append(i)
+
+  def count_clusters(self):
+    count = 0
+    visited = set()
+    for i in xrange(self.n):
+      if i not in visited:
+        count += 1
+        q = [i]
+        while q:
+          j = q.pop()
+          visited.add(j)
+          for k in self.graph[j]:
+            if k not in visited:
+              q.append(k)
+    self.result = count
 
   def solve(self):
-    n = len(self.points)
-    graph = set((i, j) for j in xrange(n) for i in xrange(n) if self.distance(self.points[i], self.points[j]) <= 3)
+    time1 = timeit(stmt=self.prepare_graph, number=1)
+    time2 = timeit(stmt=self.count_clusters, number=1)
 
-    def dfs(graph, x):
-      for i in xrange(n):
-        if (x,i) in graph:
-          graph.discard((x,i))
-          graph.discard((i,x))
-          dfs(graph, i)
-
-    count = len(list(dfs(graph, i) for i in xrange(n) if (i,i) in graph))
     return [
       {'filename': self.filename},
-      {'part1': count},
+      {'part1': self.result},
+      {'time': time1+time2},
     ]
 
 print(Solution().load('input-test.txt').solve())
