@@ -9,29 +9,34 @@ class Solution:
     return self
 
   def prepare_graph(self):
-    self.n = len(self.points)
-    self.graph = defaultdict(list)
-    for i in xrange(self.n):
-      x1,y1,z1,t1 = self.points[i]
-      for j in xrange(i+1,self.n):
-        x2,y2,z2,t2 = self.points[j]
+    self.n = n = len(self.points)
+    graph = defaultdict(list)
+    points = self.points
+    _abs = abs
+    for i in xrange(n):
+      x1,y1,z1,t1 = points[i]
+      for j in xrange(i+1, n):
+        x2,y2,z2,t2 = points[j]
         x = x2-x1
-        if x > 3: break
-        if x + abs(y2-y1) + abs(z2-z1) + abs(t2-t1) <= 3:
-          self.graph[i].append(j)
-          self.graph[j].append(i)
+        if x + _abs(y2-y1) + _abs(z2-z1) + _abs(t2-t1) <= 3:
+          graph[i].append(j)
+          graph[j].append(i)
+        elif x >= 3 and (x > 3 or (y2-y1 >= 0 and (y2-y1 > 0 or (z2-z1 >= 0 and (z2-z1 > 0 or t2-t1 >= 0))))): break
+    self.graph = graph
 
   def count_clusters(self):
     count = 0
     visited = set()
-    for i in xrange(self.n):
+    n = self.n
+    graph = self.graph
+    for i in xrange(n):
       if i not in visited:
         count += 1
         q = [i]
         while q:
           j = q.pop()
           visited.add(j)
-          for k in self.graph[j]:
+          for k in graph[j]:
             if k not in visited:
               q.append(k)
     self.result = count
