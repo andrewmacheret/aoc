@@ -10,15 +10,16 @@ class Solution:
 
   def solve(self):
     n = len(self.points)
-    graph = [[int(self.distance(self.points[i], self.points[j]) <= 3) for j in xrange(n)] for i in xrange(n)]
+    graph = set((i, j) for j in xrange(n) for i in xrange(n) if self.distance(self.points[i], self.points[j]) <= 3)
 
     def dfs(graph, x):
       for i in xrange(n):
-        if graph[x][i] == 1:
-          graph[x][i] = graph[i][x] = 0
+        if (x,i) in graph:
+          graph.discard((x,i))
+          graph.discard((i,x))
           dfs(graph, i)
 
-    count = len(list(dfs(graph, i) for i in xrange(n) if graph[i][i] == 1))
+    count = len(list(dfs(graph, i) for i in xrange(n) if (i,i) in graph))
     return [
       {'filename': self.filename},
       {'part1': count},
