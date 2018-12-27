@@ -18,7 +18,7 @@ error() {
 [[ $YEAR != '' ]] || usage 'Numeric argument YEAR is required'
 [[ $LANG != '' ]] || usage 'Numeric argument LANG is required'
 [[ $DAY != '' ]] || usage 'Numeric argument DAY is required'
-which lynx 2>&1 >/dev/null || error 'Requirment lynx is not installed'
+which pandoc 2>&1 >/dev/null || error 'Requirment pandoc is not installed'
 
 cd "$( dirname "${BASH_SOURCE[0]}" )"
 
@@ -29,17 +29,21 @@ if ! [[ -d "$FOLDER" ]]; then
   mkdir -p "$FOLDER"
 fi
 
+./get-cookies.py '.adventofcode.com' > cookies.txt
+
 if ! [[ -f "${FOLDER}/README.md" ]]; then
   PROBLEM_DESC_URL="https://adventofcode.com/$YEAR/day/$DAY"
   echo -n "Getting problem description from $PROBLEM_DESC_URL ... "
-  PROBLEM_DESC="$( lynx -dump "$PROBLEM_DESC_URL" | awk '$0~/^---/ {p=1} $0~/^   To play,/ {p=0} p==1 {print}' )"
+  PROBLEM_DESC="$(
+    curl -s --cookie ./cookies.txt "$PROBLEM_DESC_URL" |
+      pandoc -f html -t markdown |
+      awk '$0~/^---/ {p=1} $0~/^(If you like, you can|To play,|Both parts of this puzzle are complete)/ {p=0} p==1 && $0!~/Your puzzle answer was/ {print}'
+  )"
   if [[ "$PROBLEM_DESC" != "" ]]; then
     echo 'found!'
     echo "Creating ${FOLDER}/README.md"
     (
-      echo '```'
       echo "$PROBLEM_DESC"
-      echo '```'
     ) > "${FOLDER}/README.md"
   else
     echo 'NOT FOUND!'
@@ -62,7 +66,8 @@ fi
 
 if ! [[ -f "$FOLDER/input.txt" ]]; then
   echo "Creating $FOLDER/input.txt"
-  touch "$FOLDER/input.txt"
+  PROBLEM_INPUT_URL="https://adventofcode.com/$YEAR/day/$DAY/input"
+  curl -s --cookie ./cookies.txt "$PROBLEM_INPUT_URL" > "$FOLDER/input.txt"
 fi
 
 find "$FOLDER"
