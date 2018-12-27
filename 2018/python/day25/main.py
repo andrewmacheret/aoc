@@ -1,4 +1,3 @@
-from collections import defaultdict
 from timeit import timeit
 from python_algorithms.basic.union_find import UF as UnionFind
 
@@ -10,8 +9,8 @@ class Solution:
     return self
 
   def count_clusters(self, dist=3):
-    n = len(self.points)
     points = self.points
+    n = len(points)
     uf = UnionFind(n)
 
     # compute all (dx,dy,dz,dt) such that abs(dx) + abs(dy) + abs(dz) + abs(dt) <= 3
