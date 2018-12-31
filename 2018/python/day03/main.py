@@ -7,8 +7,8 @@ sys.path.append('../')
 from day01.main import duplicates
 from day02.main import quantify
 
-def bounds(coords): # x,y -> returns min_x, min_y, max_x, max_y
-  dim = len(coords[0]) if coords else 0
+def bounds(coords, dim=0): # x,y -> returns min_x, min_y, max_x, max_y
+  if not dim: dim = len(coords[0]) if coords else 0
   return tuple(op(coords[j][i] for j in xrange(len(coords))) for op in (min, max) for i in xrange(dim))
 
 def bounds_rects(rects): # x,y,w,h -> returns min_x, min_y, max_x, max_y
