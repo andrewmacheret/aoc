@@ -5,7 +5,7 @@ import sys
 sys.path.append('../')
 from day03.main import bounds
 
-def parse(lines):
+def parse_particles(lines):
   # x, y, dx, dy
   return [map(int, re.match(r'^position=< *(-?[0-9]+), *(-?[0-9]+)> velocity=< *(-?[0-9]+), *(-?[0-9]+)>$', line).groups()) for line in lines]
 
@@ -41,7 +41,7 @@ class Day10:
   def load(self, filename):
     self.filename = filename
     with open(filename) as f: self.lines = f.read().splitlines()
-    self.particles = parse(self.lines)
+    self.particles = parse_particles(self.lines)
     return self
 
   def part2(self):
