@@ -1,7 +1,14 @@
 import re
+from collections import defaultdict
+from itertools import count
+
+import sys
+sys.path.append('../')
+from day13.main import last
+
 
 class Group:
-  def __init__(self, side, index, count, hp, immune, weak, attack_power, attack_type, initiative, debug):
+  def __init__(self, side, index, count, hp, immune, weak, attack_power, attack_type, initiative, verbose):
     self.side = side
     self.index = index
     self.original_count = self.count = count
@@ -11,7 +18,7 @@ class Group:
     self.original_attack_power = self.attack_power = attack_power
     self.attack_type = attack_type
     self.initiative = initiative
-    self.debug = debug
+    self.verbose = verbose
 
   def reset(self, boost):
     self.count = self.original_count
@@ -28,7 +35,7 @@ class Group:
 
   def target(self, enemy=None):
     self._target = enemy
-    if self.debug:
+    if self.verbose:
       if enemy:
         print(self.side + ' ' + self.name() + ' targets ' + enemy.name() + ' for ' + str(self.damage_against(enemy)) + ' damage')
       else:
@@ -43,12 +50,12 @@ class Group:
       immune_and_weak = ' (weak to ' + ', '.join(self.weak) + ')'
     else:
       immune_and_weak = ''
-    return '{0} units each with {1} hit points{2} with an attack that does {3} {4} damage at initiative {5}'.format(self.count, self.hp, immune_and_weak, self.attack_power, self.attack_type, self.initiative)
-
+    return '{} units each with {} hit points{} with an attack that does {} {} damage at initiative {}'.format(
+      self.count, self.hp, immune_and_weak, self.attack_power, self.attack_type, self.initiative)
 
   def attack(self):
     if not self._target:
-      if self.debug:
+      if self.verbose:
         print(self.side + ' ' + self.name() + ' attacks nothing')
       return False
 
@@ -56,157 +63,142 @@ class Group:
     killed = self._target.count - new_count
     self._target.count = new_count
 
-    if self.debug:
+    if self.verbose:
       print(self.side + ' ' + self.name() + ' attacks ' + self._target.name() + ', killing ' + str(killed) + ' units')
 
     return killed > 0
 
 
+def parse_groups(lines, verbose=False):
+  groups, current_side, index = defaultdict(list), None, None
+  for line in lines:
+    match = re.match(r'^(.*):$', line)
+    if match:
+      current_side = match.group(1)
+      index = 1
+    else:
+      match = re.match(r'^([0-9]+) units each with ([0-9]+) hit points( \(.*\))? with an attack that does ([0-9]+) (.*) damage at initiative ([0-9]+)$', line)
+      if match:
+        weak_immune = defaultdict(list)
+        if match.group(3):
+          for part in match.group(3)[2:-1].split('; '):
+            if part[0] == 'w':
+              weak_immune['weak'] += part[len('weak to '):].split(', ')
+            elif part[0] == 'i':
+              weak_immune['immune'] = part[len('immune to '):].split(', ')
+            else: raise Exception('wtf')
+        groups[current_side].append(
+          Group(
+            side=current_side,
+            index=index,
+            count=int(match.group(1)),
+            hp=int(match.group(2)),
+            immune=weak_immune['immune'],
+            weak=weak_immune['weak'],
+            attack_power=int(match.group(4)),
+            attack_type=match.group(5),
+            initiative=int(match.group(6)),
+            verbose=verbose
+          )
+        )
+        index += 1
+  return groups
 
-class Solution:
-  def __init__(self, debug=False):
-    self.debug = debug
+
+def battle(groups, verbose=False, boost_side=None, boost=None):
+  sides = groups.keys()
+
+  for side in sides:
+    for group in groups[side]:
+      group.reset(boost=(boost if side == boost_side else 0))
+
+  for rounds in count(1):
+
+    if verbose: print('\nRound {}\n'.format(rounds))
+
+    for i, side in enumerate(sides):
+      if verbose: print(side + ':')
+
+      if any(group.count > 0 for group in groups[side]): # is this side alive?
+        if verbose: print('{} contains {} units'.format(group.name(), group.count))
+      else:
+        if verbose: print('No groups remain.')
+        winner = sides[(i + 1) % 2]
+        return (winner, sum(g.count for g in groups[winner]), rounds)
+
+    if verbose: print('')
+    
+    attackers = []
+    for i, side in enumerate(sides):
+      unchosen = set([g for g in groups[sides[(i + 1) % 2]] if g.count > 0])
+
+      for attacker in sorted([g for g in groups[side] if g.count > 0], key=lambda g: (-g.effective_power(), -g.initiative)):
+        if not unchosen: break
+        target = min(unchosen, key=lambda g: (-attacker.damage_against(g), -g.effective_power(), -g.initiative))
+        if attacker.damage_against(target) > 0:
+          attacker.target(target)
+          unchosen.remove(target)
+          attackers.append(attacker)
+        else:
+          attacker.target()
+    
+    if sum(attacker.attack() for attacker in sorted(attackers, key=lambda g: -g.initiative)) == 0:
+      return (None, 0, rounds)
+
+    if verbose: print('')
+
+
+def battle_until_win(groups, initial_boost, verbose=False):
+  winner, winner_count, rounds = battle(groups, verbose)
+  yield winner_count
+
+  if verbose: print('')
+  print('{} won with {} units after {} rounds'.format(winner, winner_count, rounds))
+  if verbose: print('')
+
+  sides = groups.keys()
+  loser = sides[(sides.index(winner) + 1) % 2]
+
+  for boost in count(initial_boost):
+    winner, winner_count, rounds = battle(groups, verbose, loser, boost)
+    yield winner_count
+
+    if verbose: print('')
+    if winner:
+      print('Boosting {} by +{}: {} won with {} units after {} rounds'.format(loser, boost, winner, winner_count, rounds))
+    else:
+      print('Boosting {} by +{}: Stalemate after {} rounds'.format(loser, boost, rounds))
+    if verbose: print('')
+
+    if winner and winner == loser: break
+
+
+class Day24:
+  def __init__(self, verbose=False):
+    self.verbose = verbose
 
   def load(self, filename):
     self.filename = filename
     with open(filename) as f: self.lines = f.read().splitlines()
-
-    self.sides = []
-    self.groups = {}
-    current_side = None
-    index = None
-    for line in self.lines:
-      match = re.match(r'^(.*):$', line)
-      if match:
-        current_side = match.group(1)
-        self.sides.append(current_side)
-        self.groups[current_side] = []
-        index = 1
-      else:
-        match = re.match(r'^([0-9]+) units each with ([0-9]+) hit points( \(.*\))? with an attack that does ([0-9]+) (.*) damage at initiative ([0-9]+)$', line)
-        if match:
-          attr = match.group(3)
-          weak = []
-          immune = []
-          if attr:
-            for part in attr[2:-1].split('; '):
-              if part[0] == 'w':
-                weak = part[len('weak to '):].split(', ')
-              elif part[0] == 'i':
-                immune = part[len('immune to '):].split(', ')
-              else:
-                raise Exception('wtf')
-          self.groups[current_side].append(
-            Group(
-              side=current_side,
-              index=index,
-              count=int(match.group(1)),
-              hp=int(match.group(2)),
-              immune=immune,
-              weak=weak,
-              attack_power=int(match.group(4)),
-              attack_type=match.group(5),
-              initiative=int(match.group(6)),
-              debug=self.debug
-            )
-          )
-          index += 1
-
-
+    self.groups = parse_groups(self.lines)
     return self
 
-  def battle(self, boost_side=None, boost=None):
+  def part1(self):
+    return next(self.results_iter)
 
-    for side in self.sides:
-      for group in self.groups[side]:
-        group.reset(boost=(boost if side==boost_side else 0))
-
-    round = 1
-    while True:
-
-      if self.debug: print('\nRound ' + str(round) + '\n')
-
-      winner = None
-      for i, side in enumerate(self.sides):
-        other_side = self.sides[(i + 1) % 2]
-
-        side_is_alive = False
-        if self.debug: print(side + ':')
-        for group in self.groups[side]:
-          if group.count > 0:
-            side_is_alive = True
-            if self.debug: print(group.name() + ' contains ' + str(group.count) + ' units')
-
-        if not side_is_alive:
-          if self.debug: print('No groups remain.')
-          winner = other_side
-
-      if winner:
-        return (winner, sum(g.count for g in self.groups[winner]), round)
-
-      if self.debug: print('')
-      attackers = []
-      for i, side in enumerate(self.sides):
-        other_side = self.sides[(i + 1) % 2]
-        
-        choosing_order = sorted([g for g in self.groups[side] if g.count > 0], key=lambda g: (-g.effective_power(), -g.initiative))
-
-        unchosen = set([g for g in self.groups[other_side] if g.count > 0])
-
-        for chooser in choosing_order:
-          if unchosen:
-            chosen_groups = sorted(unchosen, key=lambda g: (-chooser.damage_against(g), -g.effective_power(), -g.initiative))
-            if chooser.damage_against(chosen_groups[0]) > 0:
-              chosen_group = chosen_groups[0]
-              chooser.target(chosen_group)
-              unchosen.remove(chosen_group)
-              attackers.append(chooser)
-            else:
-              chooser.target()
-      
-      someone_got_killed = False
-      for attacker in sorted(attackers, key=lambda g: -g.initiative):
-        if attacker.attack():
-          someone_got_killed = True
-
-      if not someone_got_killed:
-        return (None, 0, round)
-
-      if self.debug: print('')
-      round += 1
-
-
+  def part2(self):
+    return last(self.results_iter)
 
   def solve(self, initial_boost):
-
-    winner, winner_count, rounds = self.battle()
-    if self.debug: print('')
-    print('{0} won with {1} units after {2} rounds'.format(winner, winner_count, rounds))
-    if self.debug: print('')
-
-    loser = self.sides[(self.sides.index(winner) + 1)%2]
-
-    boost = initial_boost
-    new_winner_count = None
-    while True:
-      new_winner, new_winner_count, new_rounds = self.battle(loser, boost)
-      if self.debug: print('')
-      if new_winner:
-        print('Boosting {0} by +{1}: {2} won with {3} units after {4} rounds'.format(loser, boost, new_winner, new_winner_count, new_rounds))
-      else:
-        print('Boosting {0} by +{1}: Stalemate after {2} rounds'.format(loser, boost, new_rounds))
-      if self.debug: print('')
-  
-      if new_winner and new_winner != winner:
-        break
-      boost += 1
+    self.results_iter = battle_until_win(self.groups, initial_boost, self.verbose)
 
     return [
       {'filename': self.filename},
-      {'part1': winner_count},
-      {'part2': new_winner_count}
+      {'part1': self.part1()},
+      {'part2': self.part2()}
     ]
 
 
-print(Solution(debug=True).load('input-test.txt').solve(initial_boost=1570))
-print(Solution(debug=False).load('input.txt').solve(initial_boost=1))
+if __name__== "__main__":
+  print(Day24(verbose=True).load('input-test.txt').solve(initial_boost=1570))
+  print(Day24().load('input.txt').solve(initial_boost=1))

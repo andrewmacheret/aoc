@@ -49,8 +49,9 @@ class Day25:
     ]
 
 
-print(Day25().load('input-test.txt').solve())
-print(Day25().load('input-test2.txt').solve())
-print(Day25().load('input-test3.txt').solve())
-print(Day25().load('input-test4.txt').solve())
-print(Day25().load('input.txt').solve())
+if __name__== "__main__":
+  print(Day25().load('input-test.txt').solve())
+  print(Day25().load('input-test2.txt').solve())
+  print(Day25().load('input-test3.txt').solve())
+  print(Day25().load('input-test4.txt').solve())
+  print(Day25().load('input.txt').solve())
