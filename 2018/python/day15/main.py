@@ -2,18 +2,19 @@ from collections import OrderedDict
 from itertools import count
 
 
-def bfs(queue, goal, next_items):
+def bfs(queue, next_items, goal=lambda item, distance: False):
   seen = set(queue)
 
-  while queue:
+  for distance in count():
+    if not queue: return
     next_queue = []
 
     for item in queue:
-      if goal(item):
+      if goal(item, distance):
         yield item
         next_queue = None
       elif next_queue is not None:
-        for next_item in next_items(item):
+        for next_item in next_items(item, distance):
           if next_item not in seen:
             next_queue.append(next_item)
             seen.add(next_item)
@@ -21,6 +22,7 @@ def bfs(queue, goal, next_items):
 
 
 DIRS_IN_READ_ORDER = [(0, -1), (-1, 0), (1, 0), (0, 1)]
+
 
 def neighbors(start_x, start_y, dirs=DIRS_IN_READ_ORDER):
   for dx, dy in DIRS_IN_READ_ORDER: yield start_x + dx, start_y + dy
@@ -53,8 +55,8 @@ def draw_combat(grid, rounds, units, winner_type=None, winner_hp=None):
 def bfs_next_move(grid, move_goals, start):
   closest = list(bfs(
     queue = [(y, x, y, x) for x, y in neighbors(*start) if grid.get((x, y)) == '.'],
-    goal = lambda (y, x, hy, hx): (x, y) in move_goals,
-    next_items = lambda (y, x, hy, hx): ((y2, x2, hy, hx) for x2, y2 in neighbors(x, y) if grid.get((x2, y2)) == '.')
+    next_items = lambda (y, x, hy, hx), distance: ((y2, x2, hy, hx) for x2, y2 in neighbors(x, y) if grid.get((x2, y2)) == '.'),
+    goal = lambda (y, x, hy, hx), distance: (x, y) in move_goals
   ))
   return tuple(reversed(min(closest)[2:])) if closest else None
 
@@ -141,5 +143,7 @@ class Day15:
       {'part2': self.part2()},
     ]
 
-print(Day15(verbose=True).load('input-test.txt').solve())
-print(Day15().load('input.txt').solve())
+
+if __name__== "__main__":
+  print(Day15(verbose=True).load('input-test.txt').solve())
+  print(Day15().load('input.txt').solve())

@@ -54,6 +54,7 @@ class Day11:
       {'part2': self.part2()},
     ]
 
-print(Day11(verbose=True).load('input-test.txt').solve())
-print(Day11(verbose=True).load('input-test2.txt').solve())
-print(Day11().load('input.txt').solve())
+if __name__== "__main__":
+  print(Day11(verbose=True).load('input-test.txt').solve())
+  print(Day11(verbose=True).load('input-test2.txt').solve())
+  print(Day11().load('input.txt').solve())

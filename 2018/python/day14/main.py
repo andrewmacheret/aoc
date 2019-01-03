@@ -69,8 +69,9 @@ class Day14:
       {'part2': self.part2(inverse)},
     ]
 
-print(Day14(verbose=True).load('input-test.txt').solve(inverse=True))
-print(Day14().load('input-test2.txt').solve(inverse=True))
-print(Day14().load('input-test3.txt').solve(inverse=True))
-print(Day14().load('input-test4.txt').solve(inverse=True))
-print(Day14().load('input.txt').solve())
+if __name__== "__main__":
+  print(Day14(verbose=True).load('input-test.txt').solve(inverse=True))
+  print(Day14().load('input-test2.txt').solve(inverse=True))
+  print(Day14().load('input-test3.txt').solve(inverse=True))
+  print(Day14().load('input-test4.txt').solve(inverse=True))
+  print(Day14().load('input.txt').solve())
