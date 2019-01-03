@@ -44,5 +44,6 @@ class Day12:
       {'part2': self.part2()},
     ]
 
-print(Day12(verbose=True).load('input-test.txt').solve())
-print(Day12().load('input.txt').solve())
+if __name__== "__main__":
+  print(Day12(verbose=True).load('input-test.txt').solve())
+  print(Day12().load('input.txt').solve())

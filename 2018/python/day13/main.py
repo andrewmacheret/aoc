@@ -95,6 +95,7 @@ class Day13:
       {'part2': self.part2()},
     ]
 
-print(Day13(verbose=True).load('input-test.txt').solve())
-print(Day13(verbose=True).load('input-test2.txt').solve())
-print(Day13().load('input.txt').solve())
+if __name__== "__main__":
+  print(Day13(verbose=True).load('input-test.txt').solve())
+  print(Day13(verbose=True).load('input-test2.txt').solve())
+  print(Day13().load('input.txt').solve())
