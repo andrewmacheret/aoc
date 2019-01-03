@@ -85,6 +85,7 @@ class Day22:
     if self.verbose: draw_layout(self.layout)
 
     return [
+      {'filename': self.filename},
       {'part1': self.part1()},
       {'part2': self.part2()},
     ]
