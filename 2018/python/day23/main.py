@@ -67,6 +67,7 @@ class Day23:
       {'part2': self.part2()},
     ]
 
-print(Day23().load('input-test.txt').solve())
-print(Day23().load('input-test2.txt').solve())
-print(Day23().load('input.txt').solve())
+if __name__== "__main__":
+  print(Day23().load('input-test.txt').solve())
+  print(Day23().load('input-test2.txt').solve())
+  print(Day23().load('input.txt').solve())
