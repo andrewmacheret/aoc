@@ -29,13 +29,12 @@ if ! [[ -d "$FOLDER" ]]; then
   mkdir -p "$FOLDER"
 fi
 
-./get-cookies.py '.adventofcode.com' > cookies.txt
-
+COOKIE="$( ./get-cookies.py 'https://adventofcode.com' )"
 if ! [[ -f "${FOLDER}/README.md" ]]; then
   PROBLEM_DESC_URL="https://adventofcode.com/$YEAR/day/$DAY"
   echo -n "Getting problem description from $PROBLEM_DESC_URL ... "
   PROBLEM_DESC="$(
-    curl -s --cookie ./cookies.txt "$PROBLEM_DESC_URL" |
+    curl -s -H "Cookie: $COOKIE" "$PROBLEM_DESC_URL" |
       pandoc -f html -t markdown |
       awk '$0~/^---/ {p=1} $0~/^(If you like, you can|To play,|Both parts of this puzzle are complete)/ {p=0} p==1 && $0!~/Your puzzle answer was/ {print}'
   )"
@@ -67,7 +66,7 @@ fi
 if ! [[ -f "$FOLDER/input.txt" ]]; then
   echo "Creating $FOLDER/input.txt"
   PROBLEM_INPUT_URL="https://adventofcode.com/$YEAR/day/$DAY/input"
-  curl -s --cookie ./cookies.txt "$PROBLEM_INPUT_URL" > "$FOLDER/input.txt"
+  curl -s -H "Cookie: $COOKIE" "$PROBLEM_INPUT_URL" > "$FOLDER/input.txt"
 fi
 
 find "$FOLDER"
