@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import os
-import sys
 import operator
 from sympy import Symbol, Eq, S, solve
 
@@ -35,8 +34,8 @@ class Solution:
 
   def part2(self, goal):
     backup = self.memory
-    for noun in range(1, 100):
-      for verb in range(1, 100):
+    for noun in range(0, 100):
+      for verb in range(0, 100):
         self.memory = backup[:]
         if self.run_with_grammar(noun, verb) == goal:
           return noun, verb
@@ -61,12 +60,12 @@ class Solution:
     verb = override_verb or Symbol('verb')
     return solve(Eq(eval(expression), goal), noun, verb)
 
-print('Part 1', Solution().load('input.txt').part1())
+print('Part 1 ...', Solution().load('input.txt').part1())
 
-print('Part 2', Solution().load('input.txt').part2(19690720))
+print('Part 2 ...', Solution().load('input.txt').part2(19690720))
 
-print('Part 2, with eval', Solution().load('input.txt').part2_eval(19690720))
+print('Part 2, with eval ...', Solution().load('input.txt').part2_eval(19690720))
 
-print('Part 2, with sympy', Solution().load('input.txt').part2_solve_imperfect(19690720))
+print('Part 2, with sympy ...', Solution().load('input.txt').part2_solve_imperfect(19690720))
 # above outputs `noun = 761401/8100 - verb/202500` which is effectively `noun = 94`
-print('Part 2, with sympy', Solution().load('input.txt').part2_solve_imperfect(19690720, override_noun=94))
+print('Part 2, with sympy ...', Solution().load('input.txt').part2_solve_imperfect(19690720, override_noun=94))
