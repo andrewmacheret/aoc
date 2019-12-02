@@ -18,7 +18,7 @@ error() {
 [[ $YEAR != '' ]] || usage 'Numeric argument YEAR is required'
 [[ $LANG != '' ]] || usage 'Numeric argument LANG is required'
 [[ $DAY != '' ]] || usage 'Numeric argument DAY is required'
-which pandoc 2>&1 >/dev/null || error 'Requirment pandoc is not installed'
+which pandoc 2>&1 >/dev/null || error 'Requirement pandoc is not installed'
 
 cd "$( dirname "${BASH_SOURCE[0]}" )"
 
