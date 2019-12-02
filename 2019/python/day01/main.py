@@ -1,16 +1,5 @@
 #!/usr/bin/env python3
-import re
-import networkx as nx
-import numpy as np
-from collections import OrderedDict, defaultdict, deque, Counter
-from pprint import pprint
-from copy import copy, deepcopy
-from heapq import heappush, heappop, heappushpop, heapify, heapreplace, merge, nlargest, nsmallest
-import sys
-import io
 import os
-
-sys.setrecursionlimit(100000)
 
 class Solution:
   def __init__(self):
@@ -39,8 +28,6 @@ class Solution:
     # repeat over and over
     return sum(sum(self.reduce_until_zero(fuel)) for fuel in self.fuels)
 
-#print('Part 1 [test]', Solution().load('input-test.txt').part1())
-print('Part 1 [real]', Solution().load('input.txt').part1())
+print('Part 1 ...', Solution().load('input.txt').part1())
 
-#print('Part 2 [test]', Solution().load('input-test.txt').part2())
-print('Part 2 [real]', Solution().load('input.txt').part2())
+print('Part 2 ...', Solution().load('input.txt').part2())
