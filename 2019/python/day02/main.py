@@ -36,7 +36,7 @@ class Solution:
     return self.run_with_grammar(12, 2)
 
   def part2(self, goal):
-    backup = self.memory[:]
+    backup = self.memory
     for noun in range(1, 100):
       for verb in range(1, 100):
         self.memory = backup[:]
