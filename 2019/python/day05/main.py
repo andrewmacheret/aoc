@@ -1,64 +1,85 @@
 #!/usr/bin/env python3
-from collections import OrderedDict, defaultdict, deque, Counter
+from collections import deque
 import os
-import operator
 
 os.sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) 
 from day01.main import test
 from day02.main import load_memory
 
-def run_computer(memory, input):
-  output = []
-  pos = 0
+class Program:
+  def __init__(self, memory, input):
+    self.memory = memory
+    self.input = deque(input)
+    self.output = []
+    self.pos = 0
 
-  def grab_vals(modes, n, positionals=[]):
-    nonlocal pos
-    for i in range(1, n+1):
-      val = memory[pos]
+  def grab_vals(self, modes, overrides=[]):
+    vals = []
+    for override in overrides:
+      val = self.memory[self.pos]
       mode = modes % 10
-      yield val if mode or i in positionals else memory[val]
+      vals.append(val if mode or override else self.memory[val])
       modes //= 10
-      pos += 1
+      self.pos += 1
+    return vals
 
-  while pos < len(memory):
-    modes, opcode = divmod(memory[pos], 100)
-    pos += 1
-    if opcode == 1:
-      a, b, c = list(grab_vals(modes, 3, [3]))
-      memory[c] = a + b
-    elif opcode == 2:
-      a, b, c = list(grab_vals(modes, 3, [3]))
-      memory[c] = a * b
-    elif opcode == 3:
-      a = list(grab_vals(modes, 1, [1]))[0]
-      memory[a] = input.popleft()
-    elif opcode == 4:
-      a = list(grab_vals(modes, 1))[0]
-      output.append(a)
-    elif opcode == 5:
-      a, b = list(grab_vals(modes, 2))
-      if a != 0: pos = b
-    elif opcode == 6:
-      a, b = list(grab_vals(modes, 2))
-      if a == 0: pos = b
-    elif opcode == 7:
-      a, b, c = list(grab_vals(modes, 3, [3]))
-      memory[c] = int(a < b)
-    elif opcode == 8:
-      a, b, c = list(grab_vals(modes, 3, [3]))
-      memory[c] = int(a == b)
-    elif opcode == 99:
-      return output
-    else:
-      raise Exception("Invalid opcode " + str(opcode))
+  def run_computer(self, ops):
+    while self.pos < len(self.memory):
+      modes, opcode = divmod(self.memory[self.pos], 100)
+      if opcode == 99: return self.output
+      self.pos += 1
+      ops[opcode](self, modes)
+
+def add(prog, modes):
+  a, b, c = prog.grab_vals(modes, [0, 0, 1])
+  prog.memory[c] = a + b
+
+def mul(prog, modes):
+  a, b, c = prog.grab_vals(modes, [0, 0, 1])
+  prog.memory[c] = a * b
+
+def input(prog, modes):
+  a = prog.grab_vals(modes, [1])[0]
+  prog.memory[a] = prog.input.popleft()
+
+def output(prog, modes):
+  a = prog.grab_vals(modes, [0])[0]
+  prog.output.append(a)
+
+def jump_non_zero(prog, modes):
+  a, b = prog.grab_vals(modes, [0, 0])
+  if a != 0: prog.pos = b
+
+def jump_zero(prog, modes):
+  a, b = prog.grab_vals(modes, [0, 0])
+  if a == 0: prog.pos = b
+
+def lt(prog, modes):
+  a, b, c = prog.grab_vals(modes, [0, 0, 1])
+  prog.memory[c] = int(a < b)
+
+def eq(prog, modes):
+  a, b, c = prog.grab_vals(modes, [0, 0, 1])
+  prog.memory[c] = int(a == b)
+
+ops = {
+  1: add,
+  2: mul,
+  3: input,
+  4: output,
+  5: jump_non_zero,
+  6: jump_zero,
+  7: lt,
+  8: eq
+}
 
 def part1(filename):
   memory = load_memory(filename, script=__file__)
-  return run_computer(memory, deque([1]))[-1]
+  return Program(memory, [1]).run_computer(ops)[-1]
 
 def part2(filename):
   memory = load_memory(filename, script=__file__)
-  return run_computer(memory, deque([5]))[-1]
+  return Program(memory, [5]).run_computer(ops)[-1]
 
 if __name__== "__main__":
   test(13787043, part1("input.txt"))
