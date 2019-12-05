@@ -15,13 +15,15 @@ def has_at_least_n(iterable, n):
 def has_exactly_n(iterable, n):
   return n in Counter(iterable).values()
 
-def part1(filename):
+def solve(filename, extra_check):
   start, end = map(int, load(filename, script=__file__)[0].split('-', 2))
-  return sum(1 for s in map(str, range(start, end + 1)) if is_sorted(s) and has_at_least_n(s, 2))
+  return sum(is_sorted(s) and extra_check(s, 2) for s in map(str, range(start, end + 1)))
+
+def part1(filename):
+  return solve(filename, has_at_least_n)
 
 def part2(filename):
-  start, end = map(int, load(filename, script=__file__)[0].split('-', 2))
-  return sum(1 for s in map(str, range(start, end + 1)) if is_sorted(s) and has_exactly_n(s, 2))
+  return solve(filename, has_exactly_n)
 
 if __name__== "__main__":
   test(1, part1('input-test-1.txt'))
