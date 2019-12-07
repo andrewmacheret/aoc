@@ -2,7 +2,6 @@
 from collections import deque
 import os
 
-os.sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) 
 from day01.main import test
 from day02.main import load_memory
 

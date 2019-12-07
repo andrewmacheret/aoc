@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import os
 
-os.sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) 
 from day01.main import load, test
 
 DIRS = { 'R': (1, 0), 'U': (0, -1), 'L': (-1, 0), 'D': (0, 1) }

@@ -2,17 +2,17 @@
 import re
 import networkx as nx
 import numpy as np
-from collections import OrderedDict, defaultdict, deque, Counter
+from collections import *
+from itertools import *
 from pprint import pprint
 from copy import copy, deepcopy
-from heapq import heappush, heappop, heappushpop, heapify, heapreplace, merge, nlargest, nsmallest
+from heapq import *
 import sys
 import io
 import os
 
 sys.setrecursionlimit(100000)
 
-os.sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) 
 from day01.main import load, test
 
 def load_custom(filename, script=__file__):
