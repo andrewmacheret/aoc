@@ -10,7 +10,7 @@ from day05.main import Program
 single_loop = [0]
 inf_loop = iter(int, 1)
 
-def run_progs_once(progs, input=0):
+def chain_progs(progs, input=0):
   for prog, run in progs:
     prog.input.append(input)
     try: input = next(run, None)
@@ -23,12 +23,12 @@ def init_programs(combo, memory):
 
 def try_combos_once(combo, memory):
   progs = init_programs(combo, memory)
-  return (list(run_progs_once(progs)) or [-inf])[-1]
+  return (list(chain_progs(progs)) or [-inf])[-1]
 
 def try_combos(combo, memory, input=0):
   progs = init_programs(combo, memory)
   while True:
-    output = list(run_progs_once(progs, input))
+    output = list(chain_progs(progs, input))
     if len(output) > 0: input = output[-1]
     if len(output) < len(combo): return input
 
