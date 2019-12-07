@@ -3,7 +3,6 @@ from itertools import permutations
 import os
 from math import inf
 
-os.sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) 
 from day01.main import load, test
 from day02.main import load_memory
 from day05.main import Program

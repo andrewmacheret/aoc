@@ -3,7 +3,6 @@ import os
 import operator
 from sympy import Symbol, Eq, S, solve
 
-os.sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) 
 from day01.main import load, test
 
 
