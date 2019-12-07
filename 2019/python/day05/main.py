@@ -6,30 +6,6 @@ os.sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))
 from day01.main import test
 from day02.main import load_memory
 
-class Program:
-  def __init__(self, memory, input):
-    self.memory = memory
-    self.input = deque(input)
-    self.output = []
-    self.pos = 0
-
-  def grab_vals(self, modes, overrides=[]):
-    vals = []
-    for override in overrides:
-      val = self.memory[self.pos]
-      mode = modes % 10
-      vals.append(val if mode or override else self.memory[val])
-      modes //= 10
-      self.pos += 1
-    return vals
-
-  def run_computer(self, ops):
-    while self.pos < len(self.memory):
-      modes, opcode = divmod(self.memory[self.pos], 100)
-      if opcode == 99: return self.output
-      self.pos += 1
-      ops[opcode](self, modes)
-
 def add(prog, modes):
   a, b, c = prog.grab_vals(modes, [0, 0, 1])
   prog.memory[c] = a + b
@@ -44,7 +20,7 @@ def input(prog, modes):
 
 def output(prog, modes):
   a = prog.grab_vals(modes, [0])[0]
-  prog.output.append(a)
+  return a
 
 def jump_non_zero(prog, modes):
   a, b = prog.grab_vals(modes, [0, 0])
@@ -62,7 +38,7 @@ def eq(prog, modes):
   a, b, c = prog.grab_vals(modes, [0, 0, 1])
   prog.memory[c] = int(a == b)
 
-ops = {
+default_ops = {
   1: add,
   2: mul,
   3: input,
@@ -73,13 +49,37 @@ ops = {
   8: eq
 }
 
+class Program:
+  def __init__(self, memory, input):
+    self.memory = memory[:]
+    self.input = deque(input)
+    self.pos = 0
+
+  def grab_vals(self, modes, overrides=[]):
+    vals = []
+    for override in overrides:
+      val = self.memory[self.pos]
+      mode = modes % 10
+      vals.append(val if mode or override else self.memory[val])
+      modes //= 10
+      self.pos += 1
+    return vals
+
+  def run_computer(self, ops=default_ops):
+    while self.pos < len(self.memory):
+      modes, opcode = divmod(self.memory[self.pos], 100)
+      if opcode == 99: return
+      self.pos += 1
+      output = ops[opcode](self, modes)
+      if output: yield output
+
 def part1(filename):
   memory = load_memory(filename, script=__file__)
-  return Program(memory, [1]).run_computer(ops)[-1]
+  return list(Program(memory, [1]).run_computer())[-1]
 
 def part2(filename):
   memory = load_memory(filename, script=__file__)
-  return Program(memory, [5]).run_computer(ops)[-1]
+  return list(Program(memory, [5]).run_computer())[-1]
 
 if __name__== "__main__":
   test(13787043, part1("input.txt"))
