@@ -12,24 +12,23 @@ import os
 
 sys.setrecursionlimit(100000)
 
-class Solution:
-  def __init__(self):
-    pass
+os.sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) 
+from day01.main import load, test
 
-  def load(self, filename):
-    self.filename = filename
-    with open(os.path.dirname(os.path.realpath(__file__)) + os.sep + filename) as f:
-      self.lines = f.read().splitlines()
-    return self
+def load_custom(filename, script=__file__):
+  return [line.split(',') for line in load(filename, script=script)]
 
-  def part1(self):
-    pass
+def part1(filename):
+  data = load_custom(filename)
+  return None
 
-  def part2(self):
-    pass
+# def part2(filename):
+#   data = load_custom(filename)
+#   return None
 
-print('Part 1 [test]', Solution().load('input-test.txt').part1())
-#print('Part 1 [real]', Solution().load('input.txt').part1())
-
-print('Part 2 [test]', Solution().load('input-test.txt').part2())
-#print('Part 2 [real]', Solution().load('input.txt').part2())
+if __name__== "__main__":
+  test(None, part1('input-test-1.txt'))
+  # test(None, part1('input.txt'))
+  # 
+  # test(None, part2('input-test-1.txt'))
+  # test(None, part2('input.txt'))
