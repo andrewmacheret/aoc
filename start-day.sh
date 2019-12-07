@@ -58,9 +58,14 @@ if [[ $TEMPLATE_FILE != "" ]] && [[ $MAIN_FILE == "" ]]; then
   cp "$TEMPLATE_FILE" "$MAIN_FILE"
 fi
 
-if ! [[ -f "$FOLDER/input-test.txt" ]]; then
-  echo "Creating $FOLDER/input-test.txt"
-  touch "$FOLDER/input-test.txt"
+if ! [[ -f "$FOLDER/input-test-1.txt" ]]; then
+  echo "Creating $FOLDER/input-test-1.txt"
+  touch "$FOLDER/input-test-1.txt"
+fi
+
+if ! [[ -f "$FOLDER/__init__.py" ]]; then
+  echo "Creating $FOLDER/__init__.py"
+  touch "$FOLDER/__init__.py"
 fi
 
 if ! [[ -f "$FOLDER/input.txt" ]]; then
