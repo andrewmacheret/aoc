@@ -1,32 +1,21 @@
 #!/usr/bin/env python3
 import re
 import networkx as nx
-from collections import *
-from itertools import *
-from pprint import pprint
-from copy import copy, deepcopy
-from heapq import *
-import sys
-import io
-import os
-
-sys.setrecursionlimit(100000)
+from collections import defaultdict
 
 from day01.main import load, test
 
-alphabet = 'abcdefghijklmnopqrstuvwxyz'
-
-def parse_instruction(expression):
+def parse_instruction(expression, limit=65535):
   parts = expression.split(' ')
   vars = [var for var in parts if re.match(r'[a-z]+', var)]
   var = lambda w, s: int(s) if re.match(r'\d+', s) else w[s]
   if len(parts) == 1: return lambda w: var(w, parts[0]), vars
-  if len(parts) == 2: return lambda w: ~var(w, parts[1]) & 65535, vars
+  if len(parts) == 2: return lambda w: ~var(w, parts[1]) & limit, vars
   a, op, b = parts
   return {
     'AND': lambda w: var(w, a) & var(w, b),
     'OR': lambda w: var(w, a) | var(w, b),
-    'LSHIFT': lambda w: (var(w, a) << var(w, b)) & 65535,
+    'LSHIFT': lambda w: (var(w, a) << var(w, b)) & limit,
     'RSHIFT': lambda w: var(w, a) >> var(w, b)
   }[op], vars
 
@@ -36,14 +25,13 @@ def load_instructions(filename, script=__file__):
 
 def emulate(ops):
   g = nx.DiGraph()
-  for target, (op, vars) in ops.items():
-      for var in vars:
-          g.add_edge(var, target)
+  for target, (_, vars) in ops.items():
+    for var in vars:
+      g.add_edge(var, target)
 
-  wires = defaultdict(int)
+  wires = {}
   for target in nx.topological_sort(g):
-    op, vars = ops[target]
-    wires[target] = op(wires)
+    wires[target] = ops[target][0](wires)
   return wires
 
 def solve(filename, letter, override_letter=None):
