@@ -2,7 +2,9 @@
 import os
 
 def load(filename, script=__file__):
-  with open(os.path.dirname(os.path.realpath(script)) + os.sep + filename) as f:
+  full_path = os.path.dirname(os.path.realpath(script)) + os.sep + filename
+  # print('loading ' + full_path)
+  with open(full_path) as f:
     return f.read().splitlines()
 
 def test(expected, actual):
