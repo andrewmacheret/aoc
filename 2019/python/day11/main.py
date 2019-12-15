@@ -24,13 +24,13 @@ def paint(prog, initial_color):
     prog.input.append(grid.get((x, y), 0))
   return grid
 
-def draw(grid):
+def draw(grid, out=' *'):
   min_x = min(x for x, y in grid)
   max_x = max(x for x, y in grid)
   min_y = min(y for x, y in grid)
   max_y = max(y for x, y in grid)
   for y in range(min_y, max_y + 1):
-    print(''.join(' *'[grid.get((x, y), 0)] for x in range(min_x, max_x + 1)))
+    print(''.join(out[grid.get((x, y), 0)] for x in range(min_x, max_x + 1)))
 
 def solve(filename, initial_color):
   memory = load_memory(filename, script=__file__)
