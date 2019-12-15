@@ -1,24 +1,7 @@
 #!/usr/bin/env python3
-import re
-import networkx as nx
-import numpy as np
-from collections import *
-from itertools import *
-from pprint import pprint
-from copy import copy, deepcopy
-from heapq import *
-import sys
-import io
-import os
-
-sys.setrecursionlimit(100000)
-
 from day01.main import load, test
 from day02.main import load_memory
 from day05.main import Program
-
-def load_custom(filename, script=__file__):
-  return [line.split(',') for line in load(filename, script=script)]
 
 def part1(filename):
   memory = load_memory(filename, script=__file__)
