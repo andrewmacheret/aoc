@@ -9,7 +9,7 @@ def lcm(a, b):
   return abs(a*b) // gcd(a, b)
 
 def sign(x):
-  return x != 0 and int(copysign(1, x))
+  return int(copysign(1, x)) if x != 0 else 0
 
 class Body:
   def __init__(self, x, y, z):

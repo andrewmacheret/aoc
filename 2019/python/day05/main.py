@@ -63,7 +63,7 @@ default_ops = {
 }
 
 class Program:
-  def __init__(self, memory, input):
+  def __init__(self, memory, input=[]):
     self.memory = defaultdict(int)
     for i, m in enumerate(memory):
       self.memory[i] = m
