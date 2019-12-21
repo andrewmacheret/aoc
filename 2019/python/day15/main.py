@@ -40,7 +40,7 @@ def solve(filename):
       o2_q.append((x, y))
   dfs(0, 0, 0)
 
-  o2_minutes = 0
+  o2_minutes = -1
   while o2_q:
     next_q = []
     for x, y in o2_q:
@@ -52,7 +52,7 @@ def solve(filename):
     o2_minutes += 1
     o2_q = next_q
 
-  return (o2_distance, o2_minutes-1)
+  return (o2_distance, o2_minutes)
 
 if __name__== "__main__":
   test(238, solve('input.txt')[0])
