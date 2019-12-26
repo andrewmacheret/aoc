@@ -13,13 +13,16 @@ def part1(filename):
   intersections = [(x, y) for x, y in grid if grid[x, y] == grid.get((x+1, y)) == grid.get((x-1, y)) == grid.get((x, y+1)) == grid.get((x, y-1)) == '#']
   return sum(x*y for x, y in intersections)
 
-def parse_input(main, A, B, C, video):
-  return map(ord, ('{}\n' * 5).format(main, A, B, C, video))
+def parse_input(lines):
+  return map(ord, ('{}\n' * len(lines)).format(*lines))
+
+def parse_vararg_input(**args):
+  return parse_input(args.values())
 
 def part2(filename):
   memory = load_memory(filename, script=__file__)
   memory[0] = 2
-  input = parse_input(
+  input = parse_vararg_input(
     main='A,A,B,C,B,C,B,C,C,A',
     A='L,10,R,8,R,8',
     B='L,10,L,12,R,8,R,10',
