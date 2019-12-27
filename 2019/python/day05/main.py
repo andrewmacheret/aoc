@@ -8,47 +8,47 @@ from day02.main import load_memory
 def add(prog, modes):
   a, b, c = prog.grab_vals(modes, [0, 0, 1])
   prog.memory[c] = a + b
-  # print("ADD {} prog.memory[{}] := {} + {} ... {}".format(list(reversed(list(str(modes)))), c1, a1, b1, prog.memory[c]))
+  # print("ADD {} prog.memory[{}] := {} + {} ... {}".format(list(reversed(list(str(modes)))), c, a, b, prog.memory[c]))
 
 def mul(prog, modes):
   a, b, c = prog.grab_vals(modes, [0, 0, 1])
   prog.memory[c] = a * b
-  # print("MUL {} prog.memory[{}] := {} * {} ... {}".format(list(reversed(list(str(modes)))), c1, a1, b1, prog.memory[c]))
+  # print("MUL {} prog.memory[{}] := {} * {} ... {}".format(list(reversed(list(str(modes)))), c, a, b, prog.memory[c]))
 
 def input(prog, modes):
   (a, ) = prog.grab_vals(modes, [1])
-  prog.memory[a] = prog.input.popleft()
-  # print("INP {} prog.memory[{}] := {}".format(list(reversed(list(str(modes)))), a1, prog.memory[a]))
+  prog.memory[a] = prog.input.popleft() if (prog.input or prog.default is None) else prog.default
+  # print("INP {} prog.memory[{}] := {}".format(list(reversed(list(str(modes)))), a, prog.memory[a]))
 
 def output(prog, modes):
   (a, ) = prog.grab_vals(modes, [0])
-  # print("OUT {} {}".format(list(reversed(list(str(modes)))), a1))
+  # print("OUT {} {}".format(list(reversed(list(str(modes)))), a))
   return a
 
 def jump_non_zero(prog, modes):
   a, b = prog.grab_vals(modes, [0, 0])
   if a != 0: prog.pos = b
-  # print("JNZ {} prog.pos := {} if {} != 0".format(list(reversed(list(str(modes)))), b1, a1))
+  # print("JNZ {} prog.pos := {} if {} != 0".format(list(reversed(list(str(modes)))), b, a))
 
 def jump_zero(prog, modes):
   a, b = prog.grab_vals(modes, [0, 0])
   if a == 0: prog.pos = b
-  # print("JEZ {} prog.pos := {} if {} == 0".format(list(reversed(list(str(modes)))), b1, a1))
+  # print("JEZ {} prog.pos := {} if {} == 0".format(list(reversed(list(str(modes)))), b, a))
 
 def lt(prog, modes):
   a, b, c = prog.grab_vals(modes, [0, 0, 1])
   prog.memory[c] = int(a < b)
-  # print("LT  {} prog.memory[{}] := {} < {} ... {}".format(list(reversed(list(str(modes)))), c1, a1, b1, prog.memory[c]))
+  # print("LT  {} prog.memory[{}] := {} < {} ... {}".format(list(reversed(list(str(modes)))), c, a, b, prog.memory[c]))
 
 def eq(prog, modes):
   a, b, c = prog.grab_vals(modes, [0, 0, 1])
   prog.memory[c] = int(a == b)
-  # print("EQ  {} prog.memory[{}] := {} == {} ... {}".format(list(reversed(list(str(modes)))), c1, a1, b1, prog.memory[c]))
+  # print("EQ  {} prog.memory[{}] := {} == {} ... {}".format(list(reversed(list(str(modes)))), c, a, b, prog.memory[c]))
 
 def rel(prog, modes):
   (a, ) = prog.grab_vals(modes, [0])
   prog.relative_base += a
-  # print("REL  {} prog.relative_base += {} ... {}".format(list(reversed(list(str(modes)))), a1, prog.relative_base))
+  # print("REL  {} prog.relative_base += {} ... {}".format(list(reversed(list(str(modes)))), a, prog.relative_base))
 
 default_ops = {
   1: add,
@@ -63,13 +63,15 @@ default_ops = {
 }
 
 class Program:
-  def __init__(self, memory, input=[]):
+  def __init__(self, memory, input=[], default=None):
     self.memory = defaultdict(int)
     for i, m in enumerate(memory):
       self.memory[i] = m
     self.input = deque(input)
     self.pos = 0
     self.relative_base = 0
+    self.default = default
+    self.interrupt = False
 
   def grab_vals(self, modes, overrides=[]):
     vals = []
@@ -86,7 +88,7 @@ class Program:
     return vals
 
   def run_computer(self, ops=default_ops):
-    while self.pos < len(self.memory):
+    while self.pos < len(self.memory) and not self.interrupt:
       modes, opcode = divmod(self.memory[self.pos], 100)
       if opcode == 99: return
       self.pos += 1
