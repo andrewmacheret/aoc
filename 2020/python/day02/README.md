@@ -15,8 +15,8 @@ Policy]{title="To ensure your safety, your password must be the following string
 that was in effect when they were chosen.
 
 To try to debug the problem, they have created a list (your puzzle
-input) of _passwords_ (according to the corrupted database) and _the
-corporate policy when that password was set_.
+input) of *passwords* (according to the corrupted database) and *the
+corporate policy when that password was set*.
 
 For example, suppose you have the following list:
 
@@ -35,7 +35,8 @@ In the above example, `2` passwords are valid. The middle password,
 `1`. The first and third passwords are valid: they contain one `a` or
 nine `c`, both within the limits of their respective policies.
 
-_How many passwords are valid_ according to their policies?
+*How many passwords are valid* according to their policies?
+
 
 ## \-\-- Part Two \-\-- {#part2}
 
@@ -48,21 +49,21 @@ password policy rules from his old job at the sled rental place down the
 street! The Official Toboggan Corporate Policy actually works a little
 differently.
 
-Each policy actually describes two _positions in the password_, where
+Each policy actually describes two *positions in the password*, where
 `1` means the first character, `2` means the second character, and so
 on. (Be careful; Toboggan Corporate Policies have no concept of \"index
-zero\"!) _Exactly one of these positions_ must contain the given letter.
+zero\"!) *Exactly one of these positions* must contain the given letter.
 Other occurrences of the letter are irrelevant for the purposes of
 policy enforcement.
 
 Given the same example list from above:
 
-- `1-3 a: abcde` is _valid_: position `1` contains `a` and position
-  `3` does not.
-- `1-3 b: cdefg` is _invalid_: neither position `1` nor position `3`
-  contains `b`.
-- `2-9 c: ccccccccc` is _invalid_: both position `2` and position `9`
-  contain `c`.
+-   `1-3 a: abcde` is *valid*: position `1` contains `a` and position
+    `3` does not.
+-   `1-3 b: cdefg` is *invalid*: neither position `1` nor position `3`
+    contains `b`.
+-   `2-9 c: ccccccccc` is *invalid*: both position `2` and position `9`
+    contain `c`.
 
-_How many passwords are valid_ according to the new interpretation of
+*How many passwords are valid* according to the new interpretation of
 the policies?
