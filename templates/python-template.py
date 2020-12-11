@@ -7,6 +7,9 @@ from itertools import *
 from pprint import pprint
 from copy import copy, deepcopy
 from heapq import *
+from operator import *
+from functools import *
+from math import *
 import sys
 import io
 import os

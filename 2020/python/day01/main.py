@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 import os
-import sys
 from itertools import *
-from collections import *
-
-sys.setrecursionlimit(100000)
 
 def load(filename, script=__file__):
   full_path = os.path.dirname(os.path.realpath(script)) + os.sep + filename
