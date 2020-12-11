@@ -7,7 +7,7 @@ DAY="$3"
 FORCE="$4"
 
 usage() {
-  echo "USAGE: $(basename "$0") <YEAR> <LANG> <DAY> [-f]"
+  echo "USAGE: $(basename "$0") <YEAR> <LANG> <DAY> [-f|-r]"
   error "$1"
 }
 
@@ -31,7 +31,7 @@ if ! [[ -d "$FOLDER" ]]; then
 fi
 
 COOKIE="$( ./get-cookies.py 'https://adventofcode.com' )"
-if [[ "-f" == ${FORCE} ]] || ! [[ -f "${FOLDER}/README.md" ]]; then
+if [[ "-f" == ${FORCE} ]] || [[ "-r" == ${FORCE} ]] || ! [[ -f "${FOLDER}/README.md" ]]; then
   PROBLEM_DESC_URL="https://adventofcode.com/$YEAR/day/$DAY"
   echo -n "Getting problem description from $PROBLEM_DESC_URL ... "
   PROBLEM_DESC="$(
