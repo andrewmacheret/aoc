@@ -26,8 +26,8 @@ def part1(filename):
     return None
 
 # def part2(filename):
-#   data = load_custom(filename)
-#   return None
+#     data = load_custom(filename)
+#     return None
 
 
 if __name__ == "__main__":
