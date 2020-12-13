@@ -17,7 +17,7 @@ def test(expected, actual):
 
 
 def load_ints(filename, script=__file__):
-    return map(int, load(filename))
+    return map(int, load(filename, script))
 
 
 def part1(filename):
