@@ -4,6 +4,11 @@ from math import prod
 from day01.main import load, test
 
 
+DIRS_4 = [(x, y) for i in (-1, 1) for x, y in ((i, 0), (0, i))]
+DIRS_8 = [(x, y) for x in range(-1, 2)
+          for y in range(-1, 2) if not (x == y == 0)]
+
+
 def load_grid(filename, script=__file__):
     rows = [line for line in load(filename, script=script)]
     return {(x, y): cell for y, row in enumerate(rows) for x, cell in enumerate(row)}
