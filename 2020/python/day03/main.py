@@ -46,4 +46,4 @@ if __name__ == "__main__":
     test(254, part1('input.txt', 3, 1))
 
     test(336, part2('input-test-1.txt'))
-    test(1666768320, part2('input.txt'))  # too low
+    test(1666768320, part2('input.txt'))
