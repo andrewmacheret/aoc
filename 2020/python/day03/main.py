@@ -1,25 +1,29 @@
 #!/usr/bin/env python3
-from math import prod
-
 from day01.main import load, test
+from math import prod
+from itertools import product
+from functools import cache
 
 
-DIRS_4 = [(x, y) for i in (-1, 1) for x, y in ((i, 0), (0, i))]
-DIRS_8 = [(x, y) for x in range(-1, 2)
-          for y in range(-1, 2) if not (x == y == 0)]
+@cache
+def dirs(num_dimensions):
+    return list(filter(any, product(*[range(-1, 2) for _ in range(num_dimensions)])))
+
+
+def size(grid, fn=lambda A: max(A)+1):
+    return tuple(fn(coord[i] for coord in grid) for i in range(len(next(iter(grid)))))
+
+
+def dimensions(grid):
+    return size(grid, min), size(grid)
+
+
+DIRS_8 = dirs(2)
 
 
 def load_grid(filename, script=__file__):
     rows = [line for line in load(filename, script=script)]
     return {(x, y): cell for y, row in enumerate(rows) for x, cell in enumerate(row)}
-
-
-def size(grid, fn=lambda A: max(A)+1):
-    return fn(x for x, y in grid), fn(y for x, y in grid)
-
-
-def dimensions(grid):
-    return *size(grid, min), *size(grid)
 
 
 def count_trees_on_slope(grid, right, down):

@@ -69,7 +69,7 @@ address.) In the above example, only two values in memory are not zero -
 *`165`*.
 
 Execute the initialization program. *What is the sum of all values left
-in memory after it completes?*
+in memory after it completes?* (Do not truncate the sum to 36 bits.)
 
 
 ## \-\-- Part Two \-\-- {#part2}
