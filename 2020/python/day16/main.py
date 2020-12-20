@@ -1,20 +1,7 @@
 #!/usr/bin/env python3
 from day04.main import load_multiline, test
 import re
-# import networkx as nx
-# import numpy as np
-# from collections import *
-# from itertools import *
-# from pprint import pprint
-# from copy import copy, deepcopy
-# from heapq import *
-# from operator import *
-# from functools import *
 from math import prod
-# import sys
-# import io
-# import os
-# sys.setrecursionlimit(100000)
 
 
 def parse_rules(lines):
