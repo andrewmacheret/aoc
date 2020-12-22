@@ -4,16 +4,6 @@ from itertools import product
 from operator import add
 
 
-def fast_sum(grid, coord):
-    total = 0
-    for delta in dirs(len(coord)):
-        if grid.get(tuple(map(add, coord, delta))) == '#':
-            total += 1
-            if total > 3:
-                break
-    return total
-
-
 def simulate_step(grid):
     mins, sizes = dimensions(grid)
     res = {}

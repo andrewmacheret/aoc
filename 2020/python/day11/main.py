@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from day03.main import load_grid, size, DIRS_8, test
+from day03.main import load_grid, dirs, size, test
 from collections import defaultdict
 
 
@@ -22,7 +22,7 @@ def get_adjacent(grid):
     seats = defaultdict(list)
     for (x, y), seat in grid.items():
         if seat != '.':
-            for dx, dy in DIRS_8:
+            for dx, dy in dirs(2):
                 x2, y2 = x+dx, y+dy
                 if (x2, y2) in grid and grid[x2, y2] != '.':
                     seats[x, y].append((x2, y2))
@@ -33,7 +33,7 @@ def get_line_of_sight(grid):
     seats = defaultdict(list)
     for (x, y), seat in grid.items():
         if seat != '.':
-            for dx, dy in DIRS_8:
+            for dx, dy in dirs(2):
                 x2, y2 = x+dx, y+dy
                 while (x2, y2) in grid:
                     if grid[x2, y2] != '.':

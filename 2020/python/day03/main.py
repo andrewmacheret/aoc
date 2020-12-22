@@ -18,9 +18,6 @@ def dimensions(grid):
     return size(grid, min), size(grid)
 
 
-DIRS_8 = dirs(2)
-
-
 def load_grid(filename, script=__file__):
     rows = [line for line in load(filename, script=script)]
     return {(x, y): cell for y, row in enumerate(rows) for x, cell in enumerate(row)}
