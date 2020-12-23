@@ -19,6 +19,10 @@ SEA_MONSTER_COORDS = {(x, y) for y, row in enumerate(SEA_MONSTER.split('\n'))
                       for x, cell in enumerate(row) if cell == '#'}
 
 
+def flip_horizontal(x):
+    return [y[::-1] for y in x]
+
+
 def flip_vertical(x):
     return x[::-1]
 
