@@ -4,22 +4,19 @@ from itertools import product
 from operator import add
 
 
-def simulate_step(grid):
+def simulate_step(grid, dirs, counts):
     mins, sizes = dimensions(grid)
-    res = {}
-    for coord in product(*[range(m-1, s+1) for m, s in zip(mins, sizes)]):
-        count = sum(grid.get(tuple(map(add, coord, delta))) == '#'
-                    for delta in dirs(len(coord)))
-        if count in ({2, 3} if grid.get(coord) == '#' else {3}):
-            res[coord] = '#'
-    return res
+    space = max(abs(x) for coord in dirs for x in coord)
+    for coord in product(*[range(m-space, s+space) for m, s in zip(mins, sizes)]):
+        if sum(tuple(map(add, coord, delta)) in grid for delta in dirs) in counts[coord in grid]:
+            yield coord
 
 
-def simulate(grid, steps, num_dimensions):
-    grid = {(x, y, *([0] * (num_dimensions - 2))): value for (x, y), value in grid.items() if value == '#'}
+def simulate(grid, steps, d):
+    grid = {(x, y, *([0] * (d - 2))) for (x, y), v in grid.items() if v == '#'}
     for _ in range(steps):
-        grid = simulate_step(grid)
-    return len(grid.values())
+        grid = set(simulate_step(grid, dirs(d), [{3}, {2, 3}]))
+    return len(grid)
 
 
 def part1(filename):
