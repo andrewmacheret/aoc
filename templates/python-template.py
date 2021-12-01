@@ -6,6 +6,7 @@ from pprint import pprint
 from heapq import *
 from operator import *
 from functools import *
+from bisect import *
 from math import *
 import re
 # import networkx as nx
@@ -40,7 +41,7 @@ if __name__ == "__main__":
   test(None, solve(part=1, file='input-test-3'))
   test(None, solve(part=1, file='input-test-4'))
   test(None, solve(part=1, file='input-test-5'))
-  # test(None, solve(part=1, file='input-real'))
+  test(None, solve(part=1, file='input-real'))
 
   # test(None, solve(part=2, file='input-test-1'))
   # test(None, solve(part=2, file='input-test-2'))

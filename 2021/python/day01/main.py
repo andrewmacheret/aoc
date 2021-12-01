@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
 
-from operator import lt
-
 from common.util import test, load_ints, change_dir
 
 
 def solve(part, file):
   data = load_ints(file)
-  return sum(map(lt, data, data[part * 2 - 1:]))
+  return sum(map(int.__lt__, data, data[part * 2 - 1:]))
 
 
 if __name__ == "__main__":
