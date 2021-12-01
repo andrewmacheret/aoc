@@ -1,22 +1,6 @@
 #!/usr/bin/env python3
 
-from collections import *
-from itertools import *
-from pprint import pprint
-from heapq import *
-from operator import *
-from functools import *
-from math import *
-import re
-# import networkx as nx
-# import numpy as np
-# from copy import copy, deepcopy
-# import sys
-# import io
-# import os
-# sys.setrecursionlimit(100000)
-
-from common.util import *
+from common.util import load, test, change_dir
 
 keypads = {
     1: """\
