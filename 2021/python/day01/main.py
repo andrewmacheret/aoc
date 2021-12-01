@@ -15,7 +15,7 @@ def load(filename, script=__file__):
 
 
 def load_ints(filename, script=__file__):
-  return list(map(int, load(filename, script)))
+  return map(int, load(filename, script))
 
 
 def test(expected, actual):
@@ -23,7 +23,7 @@ def test(expected, actual):
   print((template).format(expected, actual))
 
 
-# ----
+# ---- day 1 code
 
 
 def count_increasing(data):
@@ -35,12 +35,12 @@ def triplet_sums(data):
 
 
 def part1(filename):
-  data = load_ints(filename)
+  data = list(load_ints(filename))
   return count_increasing(data)
 
 
 def part2(filename):
-  data = load_ints(filename)
+  data = list(load_ints(filename))
   triplets = list(triplet_sums(data))
   return count_increasing(triplets)
 
