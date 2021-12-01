@@ -69,9 +69,25 @@ if [[ $TEMPLATE_FILE != "" ]] && [[ $MAIN_FILE == "" ]]; then
   cp "$TEMPLATE_FILE" "$MAIN_FILE"
 fi
 
-if ! [[ -f "$FOLDER/input-test-1.txt" ]]; then
-  echo "Creating $FOLDER/input-test-1.txt"
-  touch "$FOLDER/input-test-1.txt"
+if ! [[ -f "$FOLDER/input-test-1" ]]; then
+  echo "Creating $FOLDER/input-test-1"
+  touch "$FOLDER/input-test-1"
+fi
+if ! [[ -f "$FOLDER/input-test-2" ]]; then
+  echo "Creating $FOLDER/input-test-2"
+  touch "$FOLDER/input-test-2"
+fi
+if ! [[ -f "$FOLDER/input-test-3" ]]; then
+  echo "Creating $FOLDER/input-test-3"
+  touch "$FOLDER/input-test-3"
+fi
+if ! [[ -f "$FOLDER/input-test-4" ]]; then
+  echo "Creating $FOLDER/input-test-4"
+  touch "$FOLDER/input-test-4"
+fi
+if ! [[ -f "$FOLDER/input-test-5" ]]; then
+  echo "Creating $FOLDER/input-test-5"
+  touch "$FOLDER/input-test-5"
 fi
 
 if ! [[ -f "$FOLDER/__init__.py" ]]; then
@@ -79,10 +95,10 @@ if ! [[ -f "$FOLDER/__init__.py" ]]; then
   touch "$FOLDER/__init__.py"
 fi
 
-if ! [[ -f "$FOLDER/input.txt" ]]; then
-  echo "Creating $FOLDER/input.txt"
+if ! [[ -f "$FOLDER/input" ]]; then
+  echo "Creating $FOLDER/input"
   PROBLEM_INPUT_URL="https://adventofcode.com/$YEAR/day/$DAY/input"
-  curl -s -H "Cookie: $COOKIE" "$PROBLEM_INPUT_URL" > "$FOLDER/input.txt"
+  curl -s -H "Cookie: $COOKIE" "$PROBLEM_INPUT_URL" > "$FOLDER/input-real"
 fi
 
 find "$FOLDER"
