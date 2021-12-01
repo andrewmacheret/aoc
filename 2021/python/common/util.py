@@ -19,7 +19,7 @@ def load_ints(file):
 
 @cache
 def load_csv(file):
-  return [line.split(',') for line in load(file)]
+  return [line.split(', ') for line in load(file)]
 
 
 def test(expected, actual):
