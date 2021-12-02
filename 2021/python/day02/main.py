@@ -16,9 +16,9 @@ def solve(part, file):
     else:
       if dir == 'f':
         h += x
-        d += a * x
+        a += d * x
       else:
-        a += (1 | -(dir == 'u')) * x
+        d += (1 | -(dir == 'u')) * x
   return h * d
 
 
