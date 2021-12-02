@@ -22,6 +22,11 @@ def load_csv(file):
   return [line.split(', ') for line in load(file)]
 
 
+@cache
+def load_tokens(file):
+  return [line.split(' ') for line in load(file)]
+
+
 def test(expected, actual):
   result = ["FAIL", "PASS"][expected == actual]
   print(("{} ... expected={} actual={}").format(result, expected, actual))
