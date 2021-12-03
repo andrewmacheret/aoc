@@ -8,18 +8,12 @@ def solve(part, file):
   h = d = a = 0
   for line in data:
     dir, x = line[0][0], int(line[1])
-    if part == 1:
-      if dir == 'f':
-        h += x
-      else:
-        d += (1 | -(dir == 'u')) * x
+    if dir == 'f':
+      h += x
+      a += d * x
     else:
-      if dir == 'f':
-        h += x
-        a += d * x
-      else:
-        d += (1 | -(dir == 'u')) * x
-  return h * d
+      d += (1 | -(dir == 'u')) * x
+  return h * [d, a][part == 2]
 
 
 if __name__ == "__main__":
