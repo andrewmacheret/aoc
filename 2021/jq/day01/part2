@@ -1,1 +1,0 @@
-[[.[:-3], .[3:]] | transpose[] | (if .[0] < .[1] then 1 else 0 end)] | add

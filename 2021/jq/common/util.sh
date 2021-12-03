@@ -1,20 +1,12 @@
-#!/usr/bin/env -S bash -e
-
 red=`tput setaf 1`
 green=`tput setaf 2`
 reset=`tput sgr0`
-padding=8
 
 test() {
   expected="$1"; shift
   actual="$( $* )"
   [[ $expected = $actual ]] && result="${green}PASS${reset}" || result="${red}FAIL${reset}"
   printf "$result ... expected = %-${padding}s actual = %-${padding}s\n" "$expected" "$actual"
-
 }
 
-test 7    jq -s -f part1 input-test-1
-test 1215 jq -s -f part1 input-real
-
-test 5    jq -s -f part2 input-test-1
-test 1150 jq -s -f part2 input-real
+cd "$( dirname "$0" )"
