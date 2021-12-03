@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
-set -e
+#!/usr/bin/env -S bash -e
 
 usage() {
   echo "USAGE: $(basename "$0") <YEAR> [<LANG>] <DAY>" 1>&2
