@@ -4,15 +4,20 @@ from collections import Counter
 from common.util import *
 
 
+def get_common_bit(rows, column, i):
+  bits = [*zip(*rows)][column]
+  mc = Counter(bits).most_common()
+  return '10'[i] if len(mc) == 2 and mc[0][1] == mc[1][1] else mc[-i][0]
+
+
 def get_rate(data, i):
-  return int(''.join(Counter(row).most_common()[i][0] for row in [*zip(*data)]), 2)
+  return int(''.join(get_common_bit(data, c, i) for c in range(len(data[0]))), 2)
 
 
 def get_rating(data, i):
-  for j in range(len(data[0])):
-    mc = Counter([*zip(*data)][j]).most_common()
-    b = '10'[i] if len(mc) == 2 and mc[0][1] == mc[1][1] else mc[-i][0]
-    data = [row for row in data if row[j] == b]
+  for c in range(len(data[0])):
+    b = get_common_bit(data, c, i)
+    data = [row for row in data if row[c] == b]
   return int(data[0], 2)
 
 
