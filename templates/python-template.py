@@ -26,11 +26,11 @@ def load_custom(file):
 
 def solve(part, file):
   # data = load_ints(file)
-  data = load_custom(file)
+  # data = load_custom(file)
+  # data = load_blocks(file)
+  # data = load_csv(file)
+  data = load(file)
   print(data)
-  if part == 2:
-    pass
-  return None
 
 
 if __name__ == "__main__":

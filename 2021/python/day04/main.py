@@ -15,12 +15,9 @@ def solve(part, file):
   rows = defaultdict(list)
   for i, board in enumerate(boards):
     for j in range(5):
-      # horizontal
-      for x in (s := set(board[j*5:j*5+5])):
-        rows[x] += (i, s),
-      # vertical
-      for x in (s := set(board[j::5])):
-        rows[x] += (i, s),
+      for s in map(set, (board[j*5:j*5+5], board[j::5])):
+        for x in s:
+          rows[x] += (i, s),
 
   played = set()
   winners = set()
