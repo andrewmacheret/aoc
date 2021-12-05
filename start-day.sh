@@ -94,10 +94,8 @@ if ! [[ -f "$FOLDER/__init__.py" ]]; then
   touch "$FOLDER/__init__.py"
 fi
 
-if ! [[ -f "$FOLDER/input" ]]; then
-  echo "Creating $FOLDER/input"
-  PROBLEM_INPUT_URL="https://adventofcode.com/$YEAR/day/$DAY/input"
-  curl -s -H "Cookie: $COOKIE" "$PROBLEM_INPUT_URL" > "$FOLDER/input-real"
-fi
+echo "Creating $FOLDER/input-real"
+PROBLEM_INPUT_URL="https://adventofcode.com/$YEAR/day/$DAY/input"
+curl -s -H "Cookie: $COOKIE" "$PROBLEM_INPUT_URL" > "$FOLDER/input-real"
 
 find "$FOLDER"
