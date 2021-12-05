@@ -27,6 +27,21 @@ def load_tokens(file):
   return [line.split(' ') for line in load(file)]
 
 
+@cache
+def load_blocks(file):
+  def gen():
+    lines = []
+    for line in load(file):
+      if not line:
+        yield lines
+        lines = []
+      else:
+        lines.append(line)
+    if lines:
+      yield lines
+  return list(gen())
+
+
 def test(expected, actual):
   result = ["FAIL", "PASS"][expected == actual]
-  print(("{} ... expected={} actual={}").format(result, expected, actual))
+  print(("{} ... expected = {} actual = {}").format(result, expected, actual))
