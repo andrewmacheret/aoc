@@ -1,6 +1,5 @@
 #!/usr/bin/env -S bash -e
 
-padding=16
 . "$( dirname "$0" )"/../common/util.sh
 
 test 26             jq -R -r --arg days 18 -f main.jq input-test-1

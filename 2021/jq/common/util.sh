@@ -1,6 +1,7 @@
 red=`tput setaf 1`
 green=`tput setaf 2`
 reset=`tput sgr0`
+padding=16
 
 test() {
   expected="$1"; shift
