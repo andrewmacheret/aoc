@@ -1,4 +1,5 @@
 import os
+import re
 from functools import cache
 
 
@@ -19,7 +20,7 @@ def load_ints(file):
 
 @cache
 def load_csv(file):
-  return [line.split(', ') for line in load(file)]
+  return [re.split(r', *', line) for line in load(file)]
 
 
 @cache
