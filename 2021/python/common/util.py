@@ -28,6 +28,10 @@ def load_tokens(file):
   return [line.split(' ') for line in load(file)]
 
 
+def parse_nums(line):
+  return [*map(int, re.findall(r'\d+', line))]
+
+
 @cache
 def load_blocks(file):
   def gen():
@@ -41,6 +45,10 @@ def load_blocks(file):
     if lines:
       yield lines
   return list(gen())
+
+
+def sign(x):
+  return (x > 0) - (x < 0)
 
 
 def test(expected, actual):

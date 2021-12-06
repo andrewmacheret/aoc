@@ -1,26 +1,19 @@
 #!/usr/bin/env python3
 
 from collections import defaultdict
-import re
 
-from common.util import load, test, change_dir
+from common.util import sign, parse_nums, load, test, change_dir
 
 
 def solve(part, file):
-  data = load(file)
-  lines = [[*map(int, re.findall(r'\d+', line))] for line in data]
+  lines = [*map(parse_nums, load(file))]
   grid = defaultdict(int)
   for x1, y1, x2, y2 in lines:
-    if x1 == x2:
-      for y in range(min(y1, y2), max(y1, y2)+1):
-        grid[x1, y] += 1
-    elif y1 == y2:
-      for x in range(min(x1, x2), max(x1, x2)+1):
-        grid[x, y1] += 1
-    elif part == 2:
-      dx, dy = 1 | -(x1 > x2), 1 | -(y1 > y2)
-      for i in range(abs(x2 - x1)+1):
+    dx, dy = sign(x2 - x1), sign(y2 - y1)
+    if part == 2 or not dx or not dy:
+      for i in range(abs(x2 - x1 or y2 - y1) + 1):
         grid[x1+i*dx, y1+i*dy] += 1
+
   return sum(c > 1 for c in grid.values())
 
 
