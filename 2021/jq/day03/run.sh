@@ -1,6 +1,5 @@
 #!/usr/bin/env -S bash -e
 
-padding=8
 . "$( dirname "$0" )"/../common/util.sh
 
 test 198        jq -R -r -s --arg part 1 -f main.jq input-test-1
