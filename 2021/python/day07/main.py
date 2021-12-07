@@ -5,17 +5,17 @@ from math import floor, ceil
 from common.util import load, parse_nums, test, change_dir
 
 
+def compute(data, cost_fn, *possible):
+  return min(sum(cost_fn(abs(x - y)) for x in data) for y in possible)
+
+
 def solve(part, file):
   data = [*map(parse_nums, load(file))][0]
-  data.sort()
   if part == 1:
-    def cost(x): return x
-    possible = (data[len(data)//2],)
+    return compute(data, lambda x: x, sorted(data)[len(data)//2])
   else:
-    def cost(x): return x * (x+1) // 2
     avg = sum(data) / len(data)
-    possible = (floor(avg), ceil(avg))
-  return min(sum(cost(abs(x - y)) for x in data) for y in possible)
+    return compute(data, lambda x: x*(x+1)//2, *{floor(avg), ceil(avg)})
 
 
 if __name__ == "__main__":
