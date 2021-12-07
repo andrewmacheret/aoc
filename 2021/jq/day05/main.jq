@@ -8,7 +8,7 @@ def points: . as $line
   | (.[3] - .[1]) as $delta_y
   | ($delta_x | sign) as $dx
   | ($delta_y | sign) as $dy
-  | if $part == "2" or $dx == 0 or $dy == 0 then
+  | if $part == 2 or $dx == 0 or $dy == 0 then
       range(((if $delta_x != 0 then $delta_x else $delta_y end) | abs) + 1)
     else empty end
   | [$line[0] + . * $dx, $line[1] + . * $dy]
