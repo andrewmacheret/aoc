@@ -27,7 +27,7 @@ def get_rating($i): [
       | .[0] | split("")[] | tonumber
   ] | bits_to_int;
 
-parse | if $part == "1" then
+parse | if $part == 1 then
     get_rate(0) * get_rate(1)
   else
     get_rating(0) * get_rating(1)
