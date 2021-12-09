@@ -1,4 +1,5 @@
 import os
+import re
 from functools import cache
 
 
@@ -22,6 +23,10 @@ def load_csv(file):
   return [line.split(', ') for line in load(file)]
 
 
+def parse_nums(line):
+  return [*map(int, re.findall(r'\d+', line))]
+
+
 def test(expected, actual):
   result = ["FAIL", "PASS"][expected == actual]
-  print(("{} ... expected={} actual={}").format(result, expected, actual))
+  print(("{} ... expected = {} actual = {}").format(result, expected, actual))
