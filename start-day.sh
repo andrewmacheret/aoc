@@ -29,8 +29,11 @@ if [ -z $3 ]; then
 fi
 
 [ -z $YEAR ] && usage 'Numeric argument YEAR is required'
-[ -z $LANG ] && usage 'Numeric argument LANG is required'
+[ -z $LANG ] && usage 'String argument LANG is required'
 [ -z $DAY ] && usage 'Numeric argument DAY is required'
+[[ $DAY == 0* ]] && usage "Numeric argument DAY should not start with 0: '$DAY'"
+[[ $YEAR == 20?? ]] || usage "Numeric argument YEAR should be in format 20xx: '$YEAR'"
+[[ $LANG == python ]] || [[ $LANG == jq ]] || usage "Unsupported language: '$LANG'"
 which pandoc 2>&1 >/dev/null || error 'Requirement pandoc is not installed'
 
 FOLDER="$YEAR/$LANG/day$( printf '%02d' "$DAY" )"
@@ -94,8 +97,30 @@ if ! [[ -f "$FOLDER/__init__.py" ]]; then
   touch "$FOLDER/__init__.py"
 fi
 
-echo "Creating $FOLDER/input-real"
+echo "Pre-emptively creating $FOLDER/input-real"
 PROBLEM_INPUT_URL="https://adventofcode.com/$YEAR/day/$DAY/input"
 curl -s -H "Cookie: $COOKIE" "$PROBLEM_INPUT_URL" > "$FOLDER/input-real"
+
+echo "Waiting until it's time"
+echo
+DAY_PADDED="$( printf "%02d" "$DAY" )"
+UNTIL="$( date -jf '%Y-%m-%d %H:%M:%S %z' "${YEAR}-12-${DAY_PADDED} 05:00:00 -0000" '+%s' )"
+NOW="$( date '+%s' )"
+while (( "$NOW" < "$UNTIL" )); do
+  NOW="$( date '+%s' )"
+  tput cuu1
+  echo "$(( "$UNTIL" - "$NOW" )) seconds remaining ..."
+  sleep .1
+done
+
+echo "Creating $FOLDER/input-real"
+PROBLEM_INPUT_URL="https://adventofcode.com/$YEAR/day/$DAY/input"
+while true; do
+  curl -s -H "Cookie: $COOKIE" "$PROBLEM_INPUT_URL" > "$FOLDER/input-real"
+  if [[ "$(cat "$FOLDER/input-real")" == *"Please don't repeatedly request this endpoint"* ]]; then
+    echo "Endpoint not ready yet ..."
+    continue
+  fi
+done
 
 find "$FOLDER"
