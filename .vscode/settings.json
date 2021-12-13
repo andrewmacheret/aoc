@@ -1,10 +1,11 @@
 {
-    "runOnSave.statusMessageTimeout": 3000,
-    "runOnSave.commands": [
-        {
-            "match": ".*\\.py$",
-            "command": "python.execInTerminal",
-            "runIn": "vscode"
-        }
-    ]
+  "runOnSave.statusMessageTimeout": 3000,
+  "runOnSave.commands": [
+    {
+      "match": ".*\\.py$",
+      "command": "python.execInTerminal",
+      "runIn": "vscode"
+    }
+  ],
+  "python.formatting.provider": "autopep8"
 }

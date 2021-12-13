@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from statistics import median
 from common.util import load, test, change_dir
 
 
@@ -7,7 +8,7 @@ points = [1, 2, 3, 4, 3, 57, 1197, 25137]
 parens = '([{<)]}>'
 
 
-def find_first_invalid(s):
+def get_score(s):
   stack = []
   for c in s.strip():
     if c in parens[:4]:
@@ -22,9 +23,8 @@ def find_first_invalid(s):
 
 def solve(part, file):
   data = load(file)
-  res = sorted(filter(None, (
-      find_first_invalid(line)[part-1] for line in data)))
-  return sum(res) if part == 1 else res[len(res)//2]
+  res = filter(None, (get_score(line)[part-1] for line in data))
+  return (sum, median)[part-1](res)
 
 
 if __name__ == "__main__":

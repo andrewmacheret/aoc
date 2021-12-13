@@ -27,6 +27,14 @@ def parse_nums(line):
   return [*map(int, re.findall(r'\d+', line))]
 
 
+def find_tokens(line):
+  return re.findall(r'\w+', line)
+
+
+def find_words(line):
+  return re.findall(r'[a-zA-Z]+', line)
+
+
 def test(expected, actual):
   result = ["FAIL", "PASS"][expected == actual]
   print(("{} ... expected = {} actual = {}").format(result, expected, actual))

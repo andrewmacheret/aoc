@@ -117,10 +117,10 @@ echo "Creating $FOLDER/input-real"
 PROBLEM_INPUT_URL="https://adventofcode.com/$YEAR/day/$DAY/input"
 while true; do
   curl -s -H "Cookie: $COOKIE" "$PROBLEM_INPUT_URL" > "$FOLDER/input-real"
-  if [[ "$(cat "$FOLDER/input-real")" == *"Please don't repeatedly request this endpoint"* ]]; then
-    echo "Endpoint not ready yet ..."
-    continue
+  if [[ "$(cat "$FOLDER/input-real")" != *"Please don't repeatedly request this endpoint"* ]]; then
+    break
   fi
+  echo "Endpoint not ready yet ..."
 done
 
-find "$FOLDER"
+find "$FOLDER" | sort
