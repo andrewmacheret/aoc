@@ -33,6 +33,8 @@ def solve(part, file):
   print(data)
 
 
+### THE REST IS TESTS ###
+
 if __name__ == "__main__":
   change_dir(__file__)
 

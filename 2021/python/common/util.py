@@ -33,19 +33,6 @@ def parse_nums(line):
   return [*map(int, re.findall(r'\d+', line))]
 
 
-def draw_set(grid):
-  y_min = inf
-  y_max = -inf
-  x_min = inf
-  x_max = -inf
-  for x, y in grid:
-    x_max = max(x_max, x)
-    x_min = min(x_min, x)
-    y_max = max(y_max, y)
-    y_min = min(y_min, y)
-  return '\n'.join(''.join('#' if (x, y) in grid else '.' for x in range(x_min, x_max+1)) for y in range(y_min, y_max+1))
-
-
 @cache
 def load_blocks(file):
   def gen():
@@ -75,6 +62,66 @@ def find_tokens(line):
 
 def find_words(line):
   return re.findall(r'[a-zA-Z]+', line)
+
+
+def draw(grid, **vargs):
+  for type, fn in ((set, draw_set), (dict, draw_dict), (list, draw_grid)):
+    if isinstance(grid, type):
+      return fn(grid, **vargs)
+  raise Exception('Unrecognized type', grid)
+
+
+def draw_set(grid, fill='#', empty='.'):
+  return draw_dict({(x, y): (empty, fill)[(x, y) in grid] for x, y in grid})
+
+
+def draw_dict(grid, empty='.'):
+  x_min = y_min = inf
+  x_max = y_max = -inf
+  for x, y in grid:
+    x_min, x_max = min(x_min, x), max(x_max, x)
+    y_min, y_max = min(y_min, y), max(y_max, y)
+  return '\n'.join(''.join(grid.get((x, y), empty) for x in range(x_min, x_max+1)) for y in range(y_min, y_max+1))
+
+
+def draw_grid(grid):
+  n, m = len(grid), len(grid[0]) if grid else 0
+  return '\n'.join(''.join(grid[y][x] for x in range(m)) for y in range(n))
+
+
+def ascii_blocks(ascii):
+  m = len(ascii[0])
+  breaks = [i for i in range(m) if all(line[i] == '.' for line in ascii)]
+  for a, b in zip([-1] + breaks, breaks + [m]):
+    yield '\n'.join(line[a+1:b] for line in ascii)
+
+
+def build_letters(ascii, letters):
+  ascii = ascii.strip().split('\n')
+  return {b: c for b, c in zip(ascii_blocks(ascii), letters)}
+
+
+def ocr(ascii):
+  if isinstance(ascii, str):
+    ascii = ascii.split('\n')
+  if (n := len(ascii)) not in ascii_mappings:
+    raise Exception("Unsupported height: {}".format(n))
+  mapping = ascii_mappings[n]
+  return ''.join(mapping.get(b, '?') for b in ascii_blocks(ascii))
+
+
+ascii_6 = """
+.##..###...##..###..####.####..##..#..#.###...##.#..#.#....#...#.#...#..##..###..###...###.###.#..#.#...#.#...#.####
+#..#.#..#.#..#.#..#.#....#....#..#.#..#..#.....#.#.#..#....##.##.##..#.#..#.#..#.#..#.#.....#..#..#.#...#.#...#....#
+#..#.###..#....#..#.###..###..#....####..#.....#.##...#....#.#.#.#.#.#.#..#.#..#.#..#.#.....#..#..#.#...#..#.#....#.
+####.#..#.#....#..#.#....#....#.##.#..#..#.....#.#.#..#....#...#.#..##.#..#.###..###...##...#..#..#.#...#...#....#..
+#..#.#..#.#..#.#..#.#....#....#..#.#..#..#..#..#.#.#..#....#...#.#...#.#..#.#....#.#.....#..#..#..#..#.#....#...#...
+#..#.###...##..###..####.#.....###.#..#.###..##..#..#.####.#...#.#...#..##..#....#..#.###...#...##....#.....#...####
+"""
+ascii_mappings = {
+    # missing Q,W ... not sure about D,T,V,M,N
+    6: build_letters(ascii_6, 'ABCDEFGHIJKLMNOPRSTUVYZ')
+}
 
 
 DIRS_4 = [(1, 0), (-1, 0), (0, 1), (0, -1)]
