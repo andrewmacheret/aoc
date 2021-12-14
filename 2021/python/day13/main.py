@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-from common.util import draw_set, load_blocks, parse_nums, test, change_dir
+from common.util import draw, load_blocks, parse_nums, test, change_dir, ocr
 
 
 def solve(part, file):
@@ -22,7 +22,7 @@ def solve(part, file):
     if part == 1:
       return len(grid)
 
-  return draw_set(grid)
+  return draw(grid)
 
 
 if __name__ == "__main__":
@@ -38,6 +38,7 @@ if __name__ == "__main__":
 #...#
 #####
 """, '\n' + solve(part=2, file='input-test-1') + '\n')
+
   test("""
 #..#..##..#....####.###...##..####.#..#
 #..#.#..#.#.......#.#..#.#..#....#.#..#
@@ -46,3 +47,5 @@ if __name__ == "__main__":
 #..#.#..#.#....#....#.#..#..#.#....#..#
 .##...##..####.####.#..#.#..#.####..##.
 """, '\n' + solve(part=2, file='input-real') + '\n')
+
+  test("UCLZRAZU", ocr(solve(part=2, file='input-real')))
