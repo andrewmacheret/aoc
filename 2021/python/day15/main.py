@@ -7,29 +7,26 @@ from common.util import load, test, change_dir, DIRS_4
 
 
 def solve(part, file):
-  data = load(file)
-  grid = []
-  for line in data:
-    nums = [int(x) for x in line]
-    grid.append(nums)
-
-  seen = defaultdict(lambda: inf)
-  seen[0, 0] = 0
+  grid = [[int(x) for x in line] for line in load(file)]
+  seen = defaultdict(lambda: inf, {(0, 0): 0})
   n, m = len(grid), len(grid[0])
-  goal = (m*5-1, n*5-1) if part == 2 else (m-1, n-1)
+  goal = (m-1, n-1) if part == 1 else (m*5-1, n*5-1)
   q = [(0, 0, 0)]
   while q:
     score, x, y = heappop(q)
     if (x, y) == goal:
       return score
     for dx, dy in DIRS_4:
-      x1, y1 = x+dx, y+dy
-      if 0 <= x1 <= goal[0] and 0 <= y1 <= goal[1]:
-        val = (grid[y1 % n][x1 % m] + (x1//m) + (y1//n) -
-               1) % 9 + 1 if part == 2 else grid[y1][x1]
-        if (s := score + val) < seen[x1, y1]:
-          heappush(q, (s, x1, y1))
-          seen[x1, y1] = s
+      if 0 <= (x1 := x+dx) <= goal[0] and 0 <= (y1 := y+dy) <= goal[1]:
+        if part == 1:
+          val = score + grid[y1][x1]
+        else:
+          yd, ym = divmod(y1, n)
+          xd, xm = divmod(x1, m)
+          val = score + (grid[ym][xm] + xd + yd - 1) % 9 + 1
+        if seen[x1, y1] > val:
+          seen[x1, y1] = val
+          heappush(q, (val, x1, y1))
 
 
 ### THE REST IS TESTS ###
