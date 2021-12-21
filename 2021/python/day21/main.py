@@ -16,10 +16,9 @@ def quantum_dice(sides):
   return lambda: counter
 
 
-def dirac_dice(players, roll_counts, goal):
+def dirac_dice(players, roll_counts, goal, report_first):
   dp = Counter([(*players, 0, 0)])
   totals = [0, 0]
-  first_to_win = None
   for round, turn in enumerate(cycle((0, 1)), 1):
     dp_next = Counter()
     for (player1, player2, score1, score2), universes in dp.items():
@@ -30,21 +29,22 @@ def dirac_dice(players, roll_counts, goal):
           next_state = (player2, next_player1, score2, next_score1)
           dp_next[next_state] += universes * roll_count
         else:
-          if not first_to_win:
-            first_to_win = (round * 3) * score2
+          if report_first:
+            return (round * 3) * score2
           totals[turn] += universes * roll_count
     if not (dp := dp_next):
-      return first_to_win, max(totals)
+      return max(totals)
 
 
 def solve(part, file):
   players = [parse_nums(line)[-1] for line in load(file)]
-  args = (deterministic_dice(100), 1000) if part == 1 else (quantum_dice(3), 21)
-  return dirac_dice(players, *args)[part - 1]
+  if part == 1:
+    return dirac_dice(players, deterministic_dice(100), 1000, True)
+  else:
+    return dirac_dice(players, quantum_dice(3), 21, False)
 
 
 ### THE REST IS TESTS ###
-
 if __name__ == "__main__":
   change_dir(__file__)
 
