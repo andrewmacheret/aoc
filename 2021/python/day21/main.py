@@ -6,16 +6,12 @@ from itertools import cycle, product
 from common.util import load, test, change_dir, parse_nums
 
 
-def mod_up(x, m=10):
-  return x % m or m
-
-
 def part1(players, goal=1000, die_sides=100):
   dice = cycle(range(1, die_sides+1))
   scores = [0, 0]
   for round, turn in enumerate(cycle((0, 1)), 1):
     roll = next(dice) + next(dice) + next(dice)
-    players[turn] = mod_up(players[turn] + roll)
+    players[turn] = (players[turn] + roll) % 10 or 10
     scores[turn] += players[turn]
     if scores[turn] >= goal:
       return (round * 3) * scores[1 - turn]
@@ -32,7 +28,7 @@ def part2(players, goal=21, die_sides=3):
     for (player1, player2, score1, score2), universes in dp.items():
       if score2 < goal:
         for roll, roll_count in roll_counts.items():
-          next_player1 = mod_up(player1 + roll)
+          next_player1 = (player1 + roll) % 10 or 10
           next_state = (player2, next_player1, score2, score1 + next_player1)
           dp_next[next_state] += universes * roll_count
       else:
