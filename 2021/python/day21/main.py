@@ -6,8 +6,8 @@ from itertools import cycle, product
 from common.util import load, test, change_dir, parse_nums
 
 
-def part1(players, goal=1000, die_sides=100):
-  dice = cycle(range(1, die_sides+1))
+def part1(players, goal=1000, dice_sides=100):
+  dice = cycle(range(1, dice_sides+1))
   scores = [0, 0]
   for round, turn in enumerate(cycle((0, 1)), 1):
     roll = next(dice) + next(dice) + next(dice)
@@ -17,9 +17,9 @@ def part1(players, goal=1000, die_sides=100):
       return (round * 3) * scores[1 - turn]
 
 
-def part2(players, goal=21, die_sides=3):
+def part2(players, goal=21, dice_sides=3):
   roll_counts = Counter(i+j+k for i, j, k in
-                        product(range(1, die_sides+1), repeat=3))
+                        product(range(1, dice_sides+1), repeat=3))
 
   dp = Counter([(*players, 0, 0)])
   totals = [0, 0]
