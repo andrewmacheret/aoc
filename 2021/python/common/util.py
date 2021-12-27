@@ -89,6 +89,14 @@ def draw_grid(grid):
   return '\n'.join(''.join(grid[y][x] for x in range(m)) for y in range(n))
 
 
+def tuples(items):
+  return tuple(tuples(item) if isinstance(item, list) else item for item in items)
+
+
+def lists(items):
+  return list(lists(item) if isinstance(item, tuple) else item for item in items)
+
+
 def ascii_blocks(ascii):
   m = len(ascii[0])
   breaks = [i for i in range(m) if all(line[i] == '.' for line in ascii)]
