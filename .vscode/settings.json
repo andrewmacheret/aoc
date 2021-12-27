@@ -12,5 +12,8 @@
       "runIn": "terminal"
     }
   ],
-  "python.formatting.provider": "autopep8"
+  "python.formatting.provider": "autopep8",
+  "terminal.integrated.env.osx": {
+    "PATH": "$PATH:${workspaceFolder}"
+  }
 }

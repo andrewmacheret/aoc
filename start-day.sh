@@ -45,10 +45,11 @@ fi
 
 COOKIE="$( ./get-cookies.py 'https://adventofcode.com' )"
 PROBLEM_DESC_URL="https://adventofcode.com/$YEAR/day/$DAY"
+CURL_ARGS="--connect-timeout 5 --max-time 5 -s"
 
 echo -n "Getting problem description from $PROBLEM_DESC_URL ... "
 PROBLEM_DESC="$(
-  curl -s -H "Cookie: $COOKIE" "$PROBLEM_DESC_URL" |
+  curl $CURL_ARGS -H "Cookie: $COOKIE" "$PROBLEM_DESC_URL" |
     pandoc -f html -t markdown |
     awk '$0~/^---|^## \\-\\--/ {p=1} $0~/^(If you like, you can|To play,|Both parts of this puzzle are complete)/ {p=0} p==1 && $0!~/Your puzzle answer was/ {print}'
 )"
@@ -99,7 +100,7 @@ fi
 
 echo "Pre-emptively creating $FOLDER/input-real"
 PROBLEM_INPUT_URL="https://adventofcode.com/$YEAR/day/$DAY/input"
-curl -s -H "Cookie: $COOKIE" "$PROBLEM_INPUT_URL" > "$FOLDER/input-real"
+curl $CURL_ARGS -H "Cookie: $COOKIE" "$PROBLEM_INPUT_URL" > "$FOLDER/input-real"
 
 echo "Waiting until it's time"
 echo
@@ -116,7 +117,7 @@ done
 echo "Creating $FOLDER/input-real"
 PROBLEM_INPUT_URL="https://adventofcode.com/$YEAR/day/$DAY/input"
 while true; do
-  curl -s -H "Cookie: $COOKIE" "$PROBLEM_INPUT_URL" > "$FOLDER/input-real"
+  curl $CURL_ARGS -H "Cookie: $COOKIE" "$PROBLEM_INPUT_URL" > "$FOLDER/input-real"
   if [[ "$(cat "$FOLDER/input-real")" != *"Please don't repeatedly request this endpoint"* ]]; then
     break
   fi
