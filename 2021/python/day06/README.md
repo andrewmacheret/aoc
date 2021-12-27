@@ -80,11 +80,13 @@ days, there would be a total of `5934`.
 Find a way to simulate lanternfish. *How many lanternfish would there be
 after 80 days?*
 
-To begin, [get your puzzle input](6/input).
 
-Answer:
+## \-\-- Part Two \-\-- {#part2}
 
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22Lanternfish%22+%2D+Day+6+%2D+Advent+of+Code+2021&url=https%3A%2F%2Fadventofcode%2Ecom%2F2021%2Fday%2F6&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::
+Suppose the lanternfish live forever and have unlimited food and space.
+Would they take over the entire ocean?
+
+After 256 days in the example above, there would be a total of
+`26984457539` lanternfish!
+
+*How many lanternfish would there be after 256 days?*
