@@ -22,6 +22,12 @@ def load_string(file):
 
 
 @cache
+def load_int(file):
+  with open(file) as f:
+    return int(f.read().splitlines()[0])
+
+
+@cache
 def load_ints(file):
   return list(map(int, load(file)))
 
