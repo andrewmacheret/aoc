@@ -1,3 +1,4 @@
+import hashlib
 import os
 import re
 from math import inf
@@ -12,6 +13,12 @@ def change_dir(file):
 def load(file):
   with open(file) as f:
     return f.read().splitlines()
+
+
+@cache
+def load_string(file):
+  with open(file) as f:
+    return f.read().splitlines()[0]
 
 
 @cache
@@ -46,6 +53,12 @@ def load_blocks(file):
     if lines:
       yield lines
   return list(gen())
+
+
+def md5(s, repeat=1):
+  for _ in range(repeat):
+    s = hashlib.md5(s.encode()).hexdigest()
+  return s
 
 
 def sign(x):
