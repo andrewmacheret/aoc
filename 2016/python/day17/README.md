@@ -64,11 +64,20 @@ to the vault if you know the right path. For example:
 Given your vault\'s passcode, *what is the shortest path* (the actual
 path, not just the length) to reach the vault?
 
-Your puzzle input is `mmsxrhfx`{.puzzle-input}.
 
-Answer:
+## \-\-- Part Two \-\-- {#part2}
 
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22Two+Steps+Forward%22+%2D+Day+17+%2D+Advent+of+Code+2016&url=https%3A%2F%2Fadventofcode%2Ecom%2F2016%2Fday%2F17&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::
+You\'re curious how robust this security solution really is, and so you
+decide to find longer and longer paths which still provide access to the
+vault. You remember that paths always end the first time they reach the
+bottom-right room (that is, they can never pass through it, only end in
+it).
+
+For example:
+
+-   If your passcode were `ihgpwlah`, the longest path would take `370`
+    steps.
+-   With `kglvqrro`, the longest path would be `492` steps long.
+-   With `ulqzkmiv`, the longest path would be `830` steps long.
+
+What is the *length of the longest path* that reaches the vault?
