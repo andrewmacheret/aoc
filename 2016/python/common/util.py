@@ -46,6 +46,14 @@ def parse_nums(line):
   return [*map(int, re.findall(r'\d+', line))]
 
 
+def tuples(items):
+  return tuple(tuples(item) if isinstance(item, list) else item for item in items)
+
+
+def lists(items):
+  return list(lists(item) if isinstance(item, tuple) else item for item in items)
+
+
 @cache
 def load_blocks(file):
   def gen():
