@@ -69,6 +69,16 @@ def load_blocks(file):
   return list(gen())
 
 
+@cache
+def load_grid(file):
+  return [[val for val in row] for row in load(file)]
+
+
+@cache
+def load_grid_dict(file):
+  return {(x, y): val for y, row in load(file) for x, val in enumerate(row)}
+
+
 def md5(s, repeat=1):
   for _ in range(repeat):
     s = hashlib.md5(s.encode()).hexdigest()
