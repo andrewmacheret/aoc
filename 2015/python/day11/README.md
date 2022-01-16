@@ -1,4 +1,4 @@
-------------------------------------
+## \-\-- Day 11: Corporate Policy \-\--
 
 Santa\'s previous password expired, and he needs help choosing a new
 one.
@@ -42,11 +42,3 @@ For example:
 
 Given Santa\'s current password (your puzzle input), what should his
 *next password* be?
-
-
-\-\-- Part Two \-\-- {#part2}
---------------------
-
-Santa\'s password [expired
-again]{title="The corporate policy says your password expires after 12 seconds.  For security."}.
-What\'s the next one?

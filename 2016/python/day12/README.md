@@ -55,12 +55,3 @@ The above code would set register `a` to `41`, increase its value by
 
 After executing the assembunny code in your puzzle input, *what value is
 left in register `a`?*
-
-To begin, [get your puzzle input](12/input).
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22Leonardo%27s+Monorail%22+%2D+Day+12+%2D+Advent+of+Code+2016&url=https%3A%2F%2Fadventofcode%2Ecom%2F2016%2Fday%2F12&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

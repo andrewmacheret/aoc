@@ -63,12 +63,3 @@ be chosen.
 
 What is the *quantum entanglement* of the first group of packages in the
 ideal configuration?
-
-To begin, [get your puzzle input](24/input).
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22It+Hangs+in+the+Balance%22+%2D+Day+24+%2D+Advent+of+Code+2015&url=https%3A%2F%2Fadventofcode%2Ecom%2F2015%2Fday%2F24&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

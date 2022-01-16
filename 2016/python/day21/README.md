@@ -61,12 +61,3 @@ After these steps, the resulting scrambled password is `decab`.
 Now, you just need to generate a new scrambled password and you can
 access the system. Given the list of scrambling operations in your
 puzzle input, *what is the result of scrambling `abcdefgh`*?
-
-To begin, [get your puzzle input](21/input).
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22Scrambled+Letters+and+Hash%22+%2D+Day+21+%2D+Advent+of+Code+2016&url=https%3A%2F%2Fadventofcode%2Ecom%2F2016%2Fday%2F21&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

@@ -1,4 +1,4 @@
-----------------------------------------------------
+## \-\-- Day 2: I Was Told There Would Be No Math \-\--
 
 The elves are running low on wrapping paper, and so they need to submit
 an order for more. They have a list of the dimensions (length `l`, width
@@ -24,12 +24,3 @@ For example:
 All numbers in the elves\' list are in
 [feet]{title="Yes, I realize most of these presents are luxury yachts."}.
 How many total *square feet of wrapping paper* should they order?
-
-To begin, [get your puzzle input](2/input).
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22I+Was+Told+There+Would+Be+No+Math%22+%2D+Day+2+%2D+Advent+of+Code+2015&url=https%3A%2F%2Fadventofcode%2Ecom%2F2015%2Fday%2F2&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

@@ -46,12 +46,3 @@ least once.
 Given your actual map, and starting from location `0`, what is the
 *fewest number of steps* required to visit every non-`0` number marked
 on the map at least once?
-
-To begin, [get your puzzle input](24/input).
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22Air+Duct+Spelunking%22+%2D+Day+24+%2D+Advent+of+Code+2016&url=https%3A%2F%2Fadventofcode%2Ecom%2F2016%2Fday%2F24&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

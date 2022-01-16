@@ -67,12 +67,3 @@ of eggs, `7`) in register `a`, run the code, and then send the value
 left in register `a` to the safe.
 
 *What value* should be sent to the safe?
-
-To begin, [get your puzzle input](23/input).
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22Safe+Cracking%22+%2D+Day+23+%2D+Advent+of+Code+2016&url=https%3A%2F%2Fadventofcode%2Ecom%2F2016%2Fday%2F23&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

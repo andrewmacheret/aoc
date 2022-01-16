@@ -17,12 +17,3 @@ remaining side. For example, the \"triangle\" given above is
 larger than `25`.
 
 In your puzzle input, *how many* of the listed triangles are *possible*?
-
-To begin, [get your puzzle input](3/input).
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22Squares+With+Three+Sides%22+%2D+Day+3+%2D+Advent+of+Code+2016&url=https%3A%2F%2Fadventofcode%2Ecom%2F2016%2Fday%2F3&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

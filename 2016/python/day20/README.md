@@ -29,12 +29,3 @@ range.
 
 Given the list of blocked IPs you retrieved from the firewall (your
 puzzle input), *what is the lowest-valued IP* that is not blocked?
-
-To begin, [get your puzzle input](20/input).
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22Firewall+Rules%22+%2D+Day+20+%2D+Advent+of+Code+2016&url=https%3A%2F%2Fadventofcode%2Ecom%2F2016%2Fday%2F20&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

@@ -1,4 +1,4 @@
----------------------------------
+## \-\-- Day 1: Not Quite Lisp \-\--
 
 Santa was hoping for a white Christmas, but his weather machine\'s
 \"snow\" function is powered by stars, and he\'s fresh out! To save
@@ -33,20 +33,3 @@ For example:
 -   `)))` and `)())())` both result in floor `-3`.
 
 To *what floor* do the instructions take Santa?
-
-
-\-\-- Part Two \-\-- {#part2}
---------------------
-
-Now, given the same instructions, find the *position* of the first
-character that causes him to enter the basement (floor `-1`). The first
-character in the instructions has position `1`, the second character has
-position `2`, and so on.
-
-For example:
-
--   `)` causes him to enter the basement at character position `1`.
--   `()())` causes him to enter the basement at character position `5`.
-
-What is the *position* of the character that causes Santa to first enter
-the basement?

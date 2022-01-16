@@ -46,12 +46,3 @@ Your puzzle input describes all of the possible replacements and, at the
 bottom, the medicine molecule for which you need to calibrate the
 machine. *How many distinct molecules can be created* after all the
 different ways you can do one replacement on the medicine molecule?
-
-To begin, [get your puzzle input](19/input).
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22Medicine+for+Rudolph%22+%2D+Day+19+%2D+Advent+of+Code+2015&url=https%3A%2F%2Fadventofcode%2Ecom%2F2015%2Fday%2F19&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

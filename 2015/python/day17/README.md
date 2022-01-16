@@ -16,12 +16,3 @@ do it:
 
 Filling all containers entirely, how many different *combinations of
 containers* can exactly fit all `150` liters of eggnog?
-
-To begin, [get your puzzle input](17/input).
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22No+Such+Thing+as+Too+Much%22+%2D+Day+17+%2D+Advent+of+Code+2015&url=https%3A%2F%2Fadventofcode%2Ecom%2F2015%2Fday%2F17&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

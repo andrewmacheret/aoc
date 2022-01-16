@@ -48,12 +48,3 @@ key.
 
 Given the actual salt in your puzzle input, *what index* produces your
 `64`th one-time pad key?
-
-Your puzzle input is `yjdafjpo`{.puzzle-input}.
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22One%2DTime+Pad%22+%2D+Day+14+%2D+Advent+of+Code+2016&url=https%3A%2F%2Fadventofcode%2Ecom%2F2016%2Fday%2F14&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

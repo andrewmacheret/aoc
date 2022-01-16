@@ -1,4 +1,4 @@
---------------------------------------
+## \-\-- Day 17: Reservoir Research \-\--
 
 You arrive in the year 18. If it weren\'t for [the
 coat]{title="Continuity!"} you got in 1018, you would be very cold: the
@@ -189,17 +189,3 @@ tiles the water can reach is `57`.
 
 *How many tiles can the water reach* within the range of `y` values in
 your scan?
-
-
-\-\-- Part Two \-\-- {#part2}
---------------------
-
-After [a very long
-time]{title="A very long time ago, I built something similar to this in QBasic. SCREEN 13 forever!"},
-the water spring will run dry. How much water will be retained?
-
-In the example above, water that won\'t eventually drain out is shown as
-`~`, a total of `29` tiles.
-
-*How many water tiles are left* after the water spring stops producing
-water and all remaining water not at rest has drained?

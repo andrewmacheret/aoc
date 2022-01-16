@@ -1,4 +1,4 @@
---------------------------------------
+## \-\-- Day 21: Chronal Conversion \-\--
 
 You should have been watching where you were going, because as you
 wander the new North Pole base, you trip and fall into a very deep hole!
@@ -51,14 +51,3 @@ emulate this system with a scripting language.)
 causes the program to halt after executing the fewest instructions?*
 (Executing the same instruction multiple times counts as multiple
 instructions executed.)
-
-
-\-\-- Part Two \-\-- {#part2}
---------------------
-
-In order to determine the timing window for your underflow exploit, you
-also need an upper bound:
-
-*What is the lowest non-negative integer value for register `0` that
-causes the program to halt after executing the most instructions?* (The
-program must actually halt; running forever does not count as halting.)

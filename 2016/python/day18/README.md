@@ -82,9 +82,3 @@ In ten rows, this larger example has `38` safe tiles.
 
 Starting with the map in your puzzle input, in a total of `40` rows
 (including the starting row), *how many safe tiles* are there?
-
-
-## \-\-- Part Two \-\-- {#part2}
-
-*How many safe tiles* are there in a total of [`400000`
-rows]{title="You feel a wrenching sensation."}?

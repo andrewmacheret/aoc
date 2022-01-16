@@ -45,12 +45,3 @@ So, in this example, the bathroom code is `1985`.
 
 Your puzzle input is the instructions from the document you found at the
 front desk. What is the *bathroom code*?
-
-To begin, [get your puzzle input](2/input).
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22Bathroom+Security%22+%2D+Day+2+%2D+Advent+of+Code+2016&url=https%3A%2F%2Fadventofcode%2Ecom%2F2016%2Fday%2F2&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

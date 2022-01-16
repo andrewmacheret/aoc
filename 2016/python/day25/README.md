@@ -50,12 +50,3 @@ input to produce the right signal through experimentation.
 *What is the lowest positive integer* that can be used to initialize
 register `a` and cause the code to output a clock signal of `0`, `1`,
 `0`, `1`\... repeating forever?
-
-To begin, [get your puzzle input](25/input).
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22Clock+Signal%22+%2D+Day+25+%2D+Advent+of+Code+2016&url=https%3A%2F%2Fadventofcode%2Ecom%2F2016%2Fday%2F25&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::
