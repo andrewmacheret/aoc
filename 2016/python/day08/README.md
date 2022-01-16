@@ -66,12 +66,3 @@ advertisement on the back of the display tries to convince you, anyway.
 There seems to be an intermediate check of the voltage used by the
 display: after you swipe your card, if the screen did work, *how many
 pixels should be lit?*
-
-To begin, [get your puzzle input](8/input).
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22Two%2DFactor+Authentication%22+%2D+Day+8+%2D+Advent+of+Code+2016&url=https%3A%2F%2Fadventofcode%2Ecom%2F2016%2Fday%2F8&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

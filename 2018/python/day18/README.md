@@ -1,4 +1,4 @@
-----------------------------------------------
+## \-\-- Day 18: Settlers of The North Pole \-\--
 
 On the outskirts of the North Pole base construction project, many Elves
 are collecting [lumber]{title="Trade wood for sheep?"}.
@@ -175,13 +175,3 @@ gives the total *resource value* after ten minutes: `37 * 31 = 1147`.
 
 *What will the total resource value of the lumber collection area be
 after 10 minutes?*
-
-
-\-\-- Part Two \-\-- {#part2}
---------------------
-
-This important natural resource will need to last for at least thousands
-of years. Are the Elves collecting this lumber sustainably?
-
-*What will the total resource value of the lumber collection area be
-after 1000000000 minutes?*

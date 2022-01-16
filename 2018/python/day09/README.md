@@ -1,4 +1,4 @@
--------------------------------
+## \-\-- Day 9: Marble Mania \-\--
 
 You talk to the Elves while you wait for your navigation system to
 [initialize]{title="Do you have any idea how long it takes to load navigation data for all of time and space?!"}.
@@ -82,12 +82,3 @@ Here are a few more examples:
     *`37305`*
 
 *What is the winning Elf\'s score?*
-
-
-\-\-- Part Two \-\-- {#part2}
---------------------
-
-Amused by the speed of your answer, the Elves are curious:
-
-*What would the new winning Elf\'s score be if the number of the last
-marble were 100 times larger?*

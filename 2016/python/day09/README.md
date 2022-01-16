@@ -36,12 +36,3 @@ For example:
 
 What is the *decompressed length* of the file (your puzzle input)?
 Don\'t count whitespace.
-
-To begin, [get your puzzle input](9/input).
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22Explosives+in+Cyberspace%22+%2D+Day+9+%2D+Advent+of+Code+2016&url=https%3A%2F%2Fadventofcode%2Ecom%2F2016%2Fday%2F9&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

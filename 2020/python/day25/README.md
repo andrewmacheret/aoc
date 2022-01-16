@@ -89,12 +89,3 @@ public key) with a loop size of `11` (the door\'s loop size) produces
 the same encryption key: *`14897079`*.)
 
 *What encryption key is the handshake trying to establish?*
-
-To begin, [get your puzzle input](25/input).
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22Combo+Breaker%22+%2D+Day+25+%2D+Advent+of+Code+2020&url=https%3A%2F%2Fadventofcode%2Ecom%2F2020%2Fday%2F25&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

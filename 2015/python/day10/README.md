@@ -1,4 +1,4 @@
------------------------------------------
+## \-\-- Day 10: Elves Look, Elves Say \-\--
 
 Today, the Elves are playing a game called
 [look-and-say](https://en.wikipedia.org/wiki/Look-and-say_sequence).
@@ -21,14 +21,3 @@ For example:
 
 Starting with the digits in your puzzle input, apply this process 40
 times. What is *the length of the result*?
-
-
-\-\-- Part Two \-\-- {#part2}
---------------------
-
-Neat, right? You might also enjoy hearing [John Conway talking about
-this sequence](https://www.youtube.com/watch?v=ea7lJkEhytA) (that\'s
-Conway of *Conway\'s Game of Life* fame).
-
-Now, starting again with the digits in your puzzle input, apply this
-process *50* times. What is *the length of the new result*?

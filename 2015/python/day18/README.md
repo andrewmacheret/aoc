@@ -87,12 +87,3 @@ After `4` steps, this example has four lights on.
 
 In your grid of 100x100 lights, given your initial configuration, *how
 many lights are on after 100 steps*?
-
-To begin, [get your puzzle input](18/input).
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22Like+a+GIF+For+Your+Yard%22+%2D+Day+18+%2D+Advent+of+Code+2015&url=https%3A%2F%2Fadventofcode%2Ecom%2F2015%2Fday%2F18&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

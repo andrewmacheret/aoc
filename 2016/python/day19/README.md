@@ -30,12 +30,3 @@ all the presents.
 
 With the number of Elves given in your puzzle input, *which Elf gets all
 the presents?*
-
-Your puzzle input is `3001330`{.puzzle-input}.
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22An+Elephant+Named+Joseph%22+%2D+Day+19+%2D+Advent+of+Code+2016&url=https%3A%2F%2Fadventofcode%2Ecom%2F2016%2Fday%2F19&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

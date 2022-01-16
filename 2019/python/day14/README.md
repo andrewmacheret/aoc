@@ -1,4 +1,4 @@
----------------------------------------
+## \-\-- Day 14: Space Stoichiometry \-\--
 
 As you approach the rings of Saturn, your ship\'s *low fuel* indicator
 turns on. There isn\'t any fuel here, but the rings have plenty of raw
@@ -115,31 +115,3 @@ Here are some larger examples:
 
 Given the list of reactions in your puzzle input, *what is the minimum
 amount of `ORE` required to produce exactly 1 `FUEL`?*
-
-
-The first half of this puzzle is complete! It provides one gold star: \*
-
-\-\-- Part Two \-\-- {#part2}
---------------------
-
-After collecting `ORE` for a while, you check your cargo hold: *1
-trillion* (*1000000000000*) units of `ORE`.
-
-*With that much ore*, given the examples above:
-
--   The 13312 `ORE`-per-`FUEL` example could produce *82892753* `FUEL`.
--   The 180697 `ORE`-per-`FUEL` example could produce *5586022* `FUEL`.
--   The 2210736 `ORE`-per-`FUEL` example could produce *460664* `FUEL`.
-
-Given 1 trillion `ORE`, *what is the maximum amount of `FUEL` you can
-produce?*
-
-Although it hasn\'t changed, you can still [get your puzzle
-input](14/input).
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=I%27ve+completed+Part+One+of+%22Space+Stoichiometry%22+%2D+Day+14+%2D+Advent+of+Code+2019&url=https%3A%2F%2Fadventofcode%2Ecom%2F2019%2Fday%2F14&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

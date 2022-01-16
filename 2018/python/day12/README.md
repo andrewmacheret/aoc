@@ -1,4 +1,4 @@
------------------------------------------------
+## \-\-- Day 12: Subterranean Sustainability \-\--
 
 The year 518 is significantly more underground than your history books
 implied. Either that, or you\'ve arrived in a [vast cavern
@@ -108,14 +108,3 @@ after the 20th generation produces `325`.
 
 *After `20` generations, what is the sum of the numbers of all pots
 which contain a plant?*
-
-
-\-\-- Part Two \-\-- {#part2}
---------------------
-
-You realize that 20 generations aren\'t enough. After all, these plants
-will need to last another 1500 years to even reach your timeline, not to
-mention your future.
-
-*After fifty billion (`50000000000`) generations, what is the sum of the
-numbers of all pots which contain a plant?*

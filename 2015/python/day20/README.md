@@ -37,12 +37,3 @@ because it is visited by Elves `1`, `2`, and `4`, for a total of
 
 What is the *lowest house number* of the house to get at least as many
 presents as the number in your puzzle input?
-
-Your puzzle input is `34000000`{.puzzle-input}.
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22Infinite+Elves+and+Infinite+Houses%22+%2D+Day+20+%2D+Advent+of+Code+2015&url=https%3A%2F%2Fadventofcode%2Ecom%2F2015%2Fday%2F20&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

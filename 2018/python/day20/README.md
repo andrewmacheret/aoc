@@ -1,4 +1,4 @@
----------------------------------
+## \-\-- Day 20: A Regular Map \-\--
 
 While you were learning about instruction pointers, the Elves made
 considerable progress. When you look up, you discover that the North
@@ -195,13 +195,3 @@ through to reach a room?* That is, find the room for which the shortest
 path from your starting location to that room would require passing
 through the most doors; what is the fewest doors you can pass through to
 reach it?
-
-
-\-\-- Part Two \-\-- {#part2}
---------------------
-
-Okay, so the facility is
-[*big*]{title="Really, really big. No, bigger than that. Even bigger. Keep going. Move. No, more. Look, we're talking krakens and dreadnoughts for housepets. It was big!"}.
-
-*How many rooms have a shortest path from your current location that
-pass through at least `1000` doors?*

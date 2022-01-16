@@ -172,12 +172,3 @@ step, even if nothing is added to or removed from it.)
 
 In your situation, what is the *minimum number of steps* required to
 bring all of the objects to the fourth floor?
-
-To begin, [get your puzzle input](11/input).
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22Radioisotope+Thermoelectric+Generators%22+%2D+Day+11+%2D+Advent+of+Code+2016&url=https%3A%2F%2Fadventofcode%2Ecom%2F2016%2Fday%2F11&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

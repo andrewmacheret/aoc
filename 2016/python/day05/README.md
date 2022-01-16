@@ -30,12 +30,3 @@ In this example, after continuing this search a total of eight times,
 the password is `18f47a30`.
 
 Given the actual Door ID, *what is the password*?
-
-Your puzzle input is `uqwqemis`{.puzzle-input}.
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22How+About+a+Nice+Game+of+Chess%3F%22+%2D+Day+5+%2D+Advent+of+Code+2016&url=https%3A%2F%2Fadventofcode%2Ecom%2F2016%2Fday%2F5&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

@@ -35,12 +35,3 @@ directly connected*, such that:
 -   The data on node A (its `Used`) *would fit* on node B (its `Avail`).
 
 *How many viable pairs* of nodes are there?
-
-To begin, [get your puzzle input](22/input).
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22Grid+Computing%22+%2D+Day+22+%2D+Advent+of+Code+2016&url=https%3A%2F%2Fadventofcode%2Ecom%2F2016%2Fday%2F22&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

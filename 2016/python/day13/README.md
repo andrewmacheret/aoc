@@ -56,12 +56,3 @@ Thus, reaching `7,4` would take a minimum of `11` steps (starting from
 your current location, `1,1`).
 
 What is the *fewest number of steps required* for you to reach `31,39`?
-
-Your puzzle input is `1352`{.puzzle-input}.
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22A+Maze+of+Twisty+Little+Cubicles%22+%2D+Day+13+%2D+Advent+of+Code+2016&url=https%3A%2F%2Fadventofcode%2Ecom%2F2016%2Fday%2F13&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

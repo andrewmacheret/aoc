@@ -1,4 +1,4 @@
-------------------------------------------
+## \-\-- Day 16: Chronal Classification \-\--
 
 As you see the Elves defend their hot chocolate successfully, you go
 back to falling through time. This is going to become a problem.
@@ -131,14 +131,3 @@ section of your puzzle input) - you can *ignore it for now*.
 
 Ignoring the opcode numbers, *how many samples in your puzzle input
 behave like three or more opcodes?*
-
-
-\-\-- Part Two \-\-- {#part2}
---------------------
-
-Using the samples you collected, [work out the number of each
-opcode]{title="This is one of my favorite puzzles."} and execute the
-test program (the second section of your puzzle input).
-
-*What value is contained in register `0` after executing the test
-program?*

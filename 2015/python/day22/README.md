@@ -140,12 +140,3 @@ You start with *50 hit points* and *500 mana points*. The boss\'s actual
 stats are in your puzzle input. What is the *least amount of mana* you
 can spend and still win the fight? (Do not include mana recharge effects
 as \"spending\" negative mana.)
-
-To begin, [get your puzzle input](22/input).
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22Wizard+Simulator+20XX%22+%2D+Day+22+%2D+Advent+of+Code+2015&url=https%3A%2F%2Fadventofcode%2Ecom%2F2015%2Fday%2F22&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

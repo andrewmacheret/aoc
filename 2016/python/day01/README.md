@@ -36,12 +36,3 @@ For example:
 -   `R5, L5, R5, R3` leaves you `12` blocks away.
 
 *How many blocks away* is Easter Bunny HQ?
-
-To begin, [get your puzzle input](1/input).
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22No+Time+for+a+Taxicab%22+%2D+Day+1+%2D+Advent+of+Code+2016&url=https%3A%2F%2Fadventofcode%2Ecom%2F2016%2Fday%2F1&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

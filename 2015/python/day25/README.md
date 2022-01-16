@@ -72,12 +72,3 @@ time for lunch! Bye!\" The call disconnects.
 
 Santa looks nervous. Your puzzle input contains the message on the
 machine\'s console. *What code do you give the machine?*
-
-To begin, [get your puzzle input](25/input).
-
-Answer:
-
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22Let+It+Snow%22+%2D+Day+25+%2D+Advent+of+Code+2015&url=https%3A%2F%2Fadventofcode%2Ecom%2F2015%2Fday%2F25&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::

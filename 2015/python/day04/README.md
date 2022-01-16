@@ -1,4 +1,4 @@
----------------------------------------------
+## \-\-- Day 4: The Ideal Stocking Stuffer \-\--
 
 Santa needs help [mining](https://en.wikipedia.org/wiki/Bitcoin#Mining)
 some [AdventCoins]{title="Hey, mined your own business!"} (very similar
@@ -21,9 +21,3 @@ For example:
 -   If your secret key is `pqrstuv`, the lowest number it combines with
     to make an MD5 hash starting with five zeroes is `1048970`; that is,
     the MD5 hash of `pqrstuv1048970` looks like `000006136ef...`.
-
-
-\-\-- Part Two \-\-- {#part2}
---------------------
-
-Now find one that starts with *six zeroes*.
