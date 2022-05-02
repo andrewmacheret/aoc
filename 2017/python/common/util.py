@@ -6,6 +6,7 @@ from operator import *
 from functools import *
 from bisect import *
 from math import *
+from string import *
 import hashlib
 import os
 import re
@@ -46,8 +47,8 @@ def load_csv(file):
 
 
 @cache
-def load_tokens(file):
-  return [line.split(' ') for line in load(file)]
+def load_tokens(file, delim=' '):
+  return [line.split(delim) for line in load(file)]
 
 
 def parse_nums(line):
@@ -84,7 +85,7 @@ def load_grid(file):
 
 @cache
 def load_grid_dict(file):
-  return {(x, y): val for y, row in load(file) for x, val in enumerate(row)}
+  return {(x, y): val for y, row in enumerate(load(file)) for x, val in enumerate(row)}
 
 
 def md5(s, repeat=1):
@@ -98,7 +99,7 @@ def sign(x):
 
 
 def parse_nums(line):
-  return [*map(int, re.findall(r'\d+', line))]
+  return [*map(int, re.findall(r'[-+]?\d+', line))]
 
 
 def find_tokens(line):
@@ -171,6 +172,13 @@ ascii_mappings = {
 
 DIRS_4 = [(1, 0), (-1, 0), (0, 1), (0, -1)]
 DIRS_8 = [(x, y) for x in (-1, 0, 1) for y in (-1, 0, 1) if not (x == y == 0)]
+
+
+def last(it):
+  last = None
+  for x in it:
+    last = x
+  return last
 
 
 def test(expected, actual):

@@ -44,11 +44,15 @@ In this example, the exit is reached in `5` steps.
 
 *How many steps* does it take to reach the exit?
 
-To begin, [get your puzzle input](5/input).
 
-Answer:
+## \-\-- Part Two \-\-- {#part2}
 
-You can also [\[Share[on
-[Twitter](https://twitter.com/intent/tweet?text=%22A+Maze+of+Twisty+Trampolines%2C+All+Alike%22+%2D+Day+5+%2D+Advent+of+Code+2017&url=https%3A%2F%2Fadventofcode%2Ecom%2F2017%2Fday%2F5&related=ericwastl&hashtags=AdventOfCode)
-[Mastodon](javascript:void(0);)]{.share-content}\]]{.share} this puzzle.
-:::
+Now, the jumps are even stranger: after each jump, if the offset was
+*three or more*, instead *decrease* it by `1`. Otherwise, increase it by
+`1` as before.
+
+Using this rule with the above example, the process now takes `10`
+steps, and the offset values after finding the exit are left as
+`2 3 2 3 -1`.
+
+*How many steps* does it now take to reach the exit?
