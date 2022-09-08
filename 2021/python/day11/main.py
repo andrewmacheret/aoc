@@ -1,32 +1,28 @@
 #!/usr/bin/env python3
 
-from common.util import load, test, change_dir, DIRS_8
+from common.util import *
+
+
+def load_int_grid(file):
+  return [[int(c) for c in x] for x in load(file)]
 
 
 def solve(steps, file):
-  data = load(file)
-  grid = [[int(c) for c in x] for x in data]
+  grid = load_int_grid(file)
   n, m = len(grid), len(grid[0])
   flashes = 0
 
-  def flash(q, x, y):
-    grid[y][x] = (grid[y][x] + 1) % 10
-    if not grid[y][x]:
-      for dx, dy in DIRS_8:
-        if 0 <= y+dy < n and 0 <= x+dx < m:
-          q += (x+dx, y+dy),
-    return not grid[y][x]
-
-  for round in range(1, (steps or 999)+1):
-    q = []
-    for x in range(m):
-      for y in range(n):
-        flashes += flash(q, x, y)
+  for round in range(1, steps+1):
+    q = [(x, y) for x in range(m) for y in range(n)]
     while q:
       x, y = q.pop()
-      if grid[y][x]:
-        flashes += flash(q, x, y)
-    if set(x for row in grid for x in row) == {0}:
+      grid[y][x] += 1
+      if grid[y][x] == 10:
+        flashes += 1
+        q.extend((x+dx, y+dy) for dx, dy in DIRS_8
+                 if 0 <= y+dy < n and 0 <= x+dx < m)
+    grid = [[min(grid[y][x], 10) % 10 for x in range(m)] for y in range(n)]
+    if max(x for row in grid for x in row) == 0:
       return round
   return flashes
 

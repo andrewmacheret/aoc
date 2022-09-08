@@ -5,4 +5,4 @@ import sys
 url = sys.argv[1]
 
 # Uses Chrome's default cookies filepath by default
-print('\n'.join(map('='.join, chrome_cookies(url).items())))
+print('; '.join(map('='.join, chrome_cookies(url).items())))

@@ -28,9 +28,8 @@ def solve(part, file):
       for _ in range(read(11)):
         yield parse()
     else:
-      size = read(15)
-      end = pos + size
-      while pos < end:
+      end = read(15) + pos
+      while pos != end:
         yield parse()
 
   def parse():

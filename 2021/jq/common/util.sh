@@ -6,7 +6,7 @@ padding=16
 test() {
   expected="$1"; shift
   actual="$( $* )"
-  [[ $expected = $actual ]] && result="${green}PASS${reset}" || result="${red}FAIL${reset}"
+  [[ "$expected" == "$actual" ]] && result="${green}PASS${reset}" || result="${red}FAIL${reset}"
   printf "$result ... expected = %-${padding}s actual = %-${padding}s\n" "$expected" "$actual"
 }
 
