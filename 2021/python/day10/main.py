@@ -31,7 +31,7 @@ if __name__ == "__main__":
   change_dir(__file__)
 
   test(26397, solve(part=1, file='input-test-1'))
-  test(345441, solve(part=1, file='input-real'))  # not 320361
+  test(345441, solve(part=1, file='input-real'))
 
   test(288957, solve(part=2, file='input-test-1'))
   test(3235371166, solve(part=2, file='input-real'))

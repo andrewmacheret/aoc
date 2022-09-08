@@ -1,27 +1,6 @@
 #!/usr/bin/env python3
 
-from collections import *
-from itertools import *
-from pprint import pprint
-from heapq import *
-from operator import *
-from functools import *
-from bisect import *
-from math import *
-import re
-# import networkx as nx
-# import numpy as np
-# from copy import copy, deepcopy
-# import sys
-# import io
-# import os
-# sys.setrecursionlimit(100000)
-
 from common.util import *
-
-
-def load_custom(file):
-  return [line.split(',') for line in load(file)]
 
 
 decoder = {
@@ -42,12 +21,13 @@ def get_wiring(digits):
   sets = defaultdict(list)
   for digit in digits:
     sets[len(digit)].append(set(digit))
+  pprint(sets)
 
   found = {}
   def used(): return reduce(set.__or__, found.values())
   found['a'] = sets[3][0] - sets[2][0]
   found['f'] = sets[2][0] & reduce(set.__and__, sets[6])
-  found['c'] = sets[2][0] - used()  # wrong
+  found['c'] = sets[2][0] - used()
   found['d'] = sets[4][0] & reduce(set.__and__, sets[5])
   found['b'] = sets[4][0] - used()
   found['g'] = reduce(set.__and__, sets[6]) - used()
@@ -76,9 +56,9 @@ if __name__ == "__main__":
   change_dir(__file__)
 
   test(0, solve(part=1, file='input-test-1'))
-  test(26, solve(part=1, file='input-test-2'))
-  test(488, solve(part=1, file='input-real'))
+  # test(26, solve(part=1, file='input-test-2'))
+  # test(488, solve(part=1, file='input-real'))
 
-  test(5353, solve(part=2, file='input-test-1'))
-  test(61229, solve(part=2, file='input-test-2'))
-  test(1040429, solve(part=2, file='input-real'))
+  # test(5353, solve(part=2, file='input-test-1'))
+  # test(61229, solve(part=2, file='input-test-2'))
+  # test(1040429, solve(part=2, file='input-real'))

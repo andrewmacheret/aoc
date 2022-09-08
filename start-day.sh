@@ -33,7 +33,7 @@ fi
 [ -z $DAY ] && usage 'Numeric argument DAY is required'
 [[ $DAY == 0* ]] && usage "Numeric argument DAY should not start with 0: '$DAY'"
 [[ $YEAR == 20?? ]] || usage "Numeric argument YEAR should be in format 20xx: '$YEAR'"
-[[ $LANG == python ]] || [[ $LANG == jq ]] || usage "Unsupported language: '$LANG'"
+[[ $LANG == python ]] || [[ $LANG == jq ]] || [[ $LANG == apl ]] || usage "Unsupported language: '$LANG'"
 which pandoc 2>&1 >/dev/null || error 'Requirement pandoc is not installed'
 
 FOLDER="$YEAR/$LANG/day$( printf '%02d' "$DAY" )"

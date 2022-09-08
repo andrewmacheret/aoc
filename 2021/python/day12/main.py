@@ -14,24 +14,19 @@ def solve(part, file):
     graph[b] += a,
 
   def dfs(node, visited, mulligans):
-    added = 0
     if node == 'end':
       return 1
     elif node.islower():
-      if node in visited and (node == 'start' or not mulligans):
-        return 0
-      elif node in visited:
-        mulligans -= 1
+      if node in visited:
+        if node == 'start' or not mulligans:
+          return 0
+        else:
+          mulligans = 0
       else:
-        added = 1
         visited.add(node)
-    try:
-      return sum(dfs(g, visited, mulligans) for g in graph[node])
-    finally:
-      if added:
-        visited.remove(node)
+    return sum(dfs(g, set(visited), mulligans) for g in graph[node])
 
-  return dfs('start', set(), part - 1)
+  return dfs('start', set(), part == 2)
 
 # THE REST IS TESTS #
 

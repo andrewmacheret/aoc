@@ -12,13 +12,12 @@ def num(obj):
 
 def combine(*root):
   root = list(root)
-  while 1:
-    did = 1
+  did = 1
+  while did:
     while did:
       root, did = explode(root)[0]
     root, did = split(root)
-    if not did:
-      return root
+  return root
 
 
 def explode(obj, depth=0):

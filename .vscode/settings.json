@@ -10,8 +10,38 @@
       "match": ".*/util\\.py$",
       "command": "${fileDirname}/../setup; ${fileDirname}/../setup",
       "runIn": "terminal"
+    },
+    {
+      "match": ".*\\.apl$",
+      "command": "cd ${fileDirname}; apl.sh ${file}",
+      "runIn": "terminal"
+    },
+    {
+      "match": ".*\\.jq$",
+      "command": "cd ${fileDirname}; ./run.sh",
+      "runIn": "terminal"
     }
   ],
+  "saveAndRun": {
+    "commands": [
+      {
+        "match": ".*\\.py$",
+        "cmd": "cd ${fileDirname}; python3 ${fileBasename}",
+      },
+      {
+        "match": ".*/util\\.py$",
+        "cmd": "cd ${fileDirname}; ./setup",
+      },
+      {
+        "match": ".*\\.apl$",
+        "cmd": "cd ${fileDirname}; apl.sh ${fileBasename}",
+      },
+      {
+        "match": ".*/main\\.jq$",
+        "cmd": "cd ${fileDirname}; ./run.sh",
+      }
+    ]
+  },
   "python.formatting.provider": "autopep8",
   "terminal.integrated.env.osx": {
     "PATH": "$PATH:${workspaceFolder}"
