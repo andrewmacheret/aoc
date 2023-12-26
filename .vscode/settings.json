@@ -25,12 +25,12 @@
   "saveAndRun": {
     "commands": [
       {
-        "match": ".*\\.py$",
-        "cmd": "cd ${fileDirname}; python3 ${fileBasename}",
+        "match": ".*/util\\.py$",
+        "cmd": "cd ${fileDirname}/..; ./setup",
       },
       {
-        "match": ".*/util\\.py$",
-        "cmd": "cd ${fileDirname}; ./setup",
+        "match": ".*\\.py$",
+        "cmd": "cd ${fileDirname}; time python3 ${fileBasename}",
       },
       {
         "match": ".*\\.apl$",
@@ -43,6 +43,7 @@
     ]
   },
   "python.formatting.provider": "autopep8",
+  "python.formatting.autopep8Args": ["--indent-size=2"],
   "terminal.integrated.env.osx": {
     "PATH": "$PATH:${workspaceFolder}"
   }

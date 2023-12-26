@@ -76,7 +76,7 @@ def load_grid(file):
 
 @cache
 def load_grid_dict(file):
-  return {(x, y): val for y, row in load(file) for x, val in enumerate(row)}
+  return {(x, y): val for y, row in enumerate(load(file)) for x, val in enumerate(row)}
 
 
 def md5(s, repeat=1):

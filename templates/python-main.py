@@ -19,6 +19,9 @@ def solve(part, file):
   # data = load_blocks(file)
   # data = load_csv(file)
   data = load(file)
+
+  #
+
   print(data)
 
 
@@ -28,15 +31,7 @@ if __name__ == "__main__":
   change_dir(__file__)
 
   test(None, solve(part=0, file='input-test-1'))
-  # test(None, solve(part=0, file='input-test-2'))
-  # test(None, solve(part=0, file='input-test-3'))
-  # test(None, solve(part=0, file='input-test-4'))
-  # test(None, solve(part=0, file='input-test-5'))
   # test(None, solve(part=0, file='input-real'))
 
   # test(None, solve(part=1, file='input-test-1'))
-  # test(None, solve(part=1, file='input-test-2'))
-  # test(None, solve(part=1, file='input-test-3'))
-  # test(None, solve(part=1, file='input-test-4'))
-  # test(None, solve(part=1, file='input-test-5'))
   # test(None, solve(part=1, file='input-real'))
