@@ -25,7 +25,7 @@ if [ -z $3 ]; then
     # <YEAR> <DAY>
     DAY="$2"
   fi
-  LANG=$(ls 2020 | head -1)
+  LANG=$(ls "$YEAR" | head -1)
 fi
 
 [ -z $YEAR ] && usage 'Numeric argument YEAR is required'
@@ -63,34 +63,26 @@ else
   echo 'NOT FOUND!'
 fi
 
-TEMPLATE_FILE="$( ls templates/$LANG-template.* 2>/dev/null | head -1 )"
-MAIN_FILE="$( ls $FOLDER/main.* 2>/dev/null | head -1 )"
-if [[ $TEMPLATE_FILE != "" ]] && [[ $MAIN_FILE == "" ]]; then
-  TEMPLATE_FILE_EXT="${TEMPLATE_FILE##*.}"
-  MAIN_FILE="${FOLDER}/main.${TEMPLATE_FILE_EXT}"
-  echo "Copying $TEMPLATE_FILE to $MAIN_FILE"
-  cp "$TEMPLATE_FILE" "$MAIN_FILE"
-fi
+TEMPLATE_FILES="$( cd templates && ls $LANG-*.* 2>/dev/null )"
+for TEMPLATE_FILE in $TEMPLATE_FILES; do
+  SRC_FILE="templates/${TEMPLATE_FILE}"
+  DST_FILE="${FOLDER}/${TEMPLATE_FILE#$LANG-}"
+  echo "Copying $SRC_FILE to $DST_FILE"
+  cp "$SRC_FILE" "$DST_FILE"
+done
+
+# TEMPLATE_FILE="$( ls templates/$LANG-template.* 2>/dev/null | head -1 )"
+# MAIN_FILE="$( ls $FOLDER/main.* 2>/dev/null | head -1 )"
+# if [[ $TEMPLATE_FILE != "" ]] && [[ $MAIN_FILE == "" ]]; then
+#   TEMPLATE_FILE_EXT="${TEMPLATE_FILE##*.}"
+#   MAIN_FILE="${FOLDER}/main.${TEMPLATE_FILE_EXT}"
+#   echo "Copying $TEMPLATE_FILE to $MAIN_FILE"
+#   cp "$TEMPLATE_FILE" "$MAIN_FILE"
+# fi
 
 if ! [[ -f "$FOLDER/input-test-1" ]]; then
   echo "Creating $FOLDER/input-test-1"
   touch "$FOLDER/input-test-1"
-fi
-if ! [[ -f "$FOLDER/input-test-2" ]]; then
-  echo "Creating $FOLDER/input-test-2"
-  touch "$FOLDER/input-test-2"
-fi
-if ! [[ -f "$FOLDER/input-test-3" ]]; then
-  echo "Creating $FOLDER/input-test-3"
-  touch "$FOLDER/input-test-3"
-fi
-if ! [[ -f "$FOLDER/input-test-4" ]]; then
-  echo "Creating $FOLDER/input-test-4"
-  touch "$FOLDER/input-test-4"
-fi
-if ! [[ -f "$FOLDER/input-test-5" ]]; then
-  echo "Creating $FOLDER/input-test-5"
-  touch "$FOLDER/input-test-5"
 fi
 
 if ! [[ -f "$FOLDER/__init__.py" ]]; then
