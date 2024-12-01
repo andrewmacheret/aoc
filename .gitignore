@@ -4,3 +4,4 @@ cookies.txt
 *.egg-info
 build/
 dist/
+.venv/
