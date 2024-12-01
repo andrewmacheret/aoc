@@ -26,7 +26,7 @@
     "commands": [
       {
         "match": ".*/util\\.py$",
-        "cmd": "cd ${fileDirname}/..; ./setup",
+        "cmd": "cd ${fileDirname}/..; . ../../../.venv/bin/activate; ./setup",
       },
       {
         "match": ".*\\.py$",

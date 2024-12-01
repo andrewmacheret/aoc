@@ -43,7 +43,7 @@ if ! [[ -d "$FOLDER" ]]; then
   mkdir -p "$FOLDER"
 fi
 
-COOKIE="$( ./get-cookies.py 'https://adventofcode.com' )"
+COOKIE="$( ./get-cookies.py 'adventofcode.com' )"
 PROBLEM_DESC_URL="https://adventofcode.com/$YEAR/day/$DAY"
 CURL_ARGS="--connect-timeout 5 --max-time 5 -s"
 
