@@ -64,7 +64,7 @@ def part2_solve_imperfect(filename, goal, override_noun=None, override_verb=None
   expression = memory[0]
   noun = override_noun or Symbol('noun')
   verb = override_verb or Symbol('verb')
-  return solve(Eq(eval(expression), goal), noun, verb)
+  return solve(Eq(eval(expression), goal), noun, verb)[0]
 
 if __name__== "__main__":
   test([3500,9,10,70,2,3,11,0,99,30,40,50], part0('input-test-1.txt'))
@@ -76,5 +76,5 @@ if __name__== "__main__":
 
   test((94, 25), part2('input.txt', 19690720))
   test((94, 25), part2_eval('input.txt', 19690720))
-  test("[(761401/8100 - verb/202500, verb)]", str(part2_solve_imperfect('input.txt', 19690720)))
-  test("[{verb: 25}]", str(part2_solve_imperfect('input.txt', 19690720, override_noun=94)))
+  test("(761401/8100 - verb/202500, verb)", str(part2_solve_imperfect('input.txt', 19690720)))
+  test((94, 25), part2_solve_imperfect('input.txt', 19690720, override_noun=94))

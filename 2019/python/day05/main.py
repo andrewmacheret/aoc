@@ -22,7 +22,7 @@ def input(prog, modes):
 
 def output(prog, modes):
   (a, ) = prog.grab_vals(modes, [0])
-  # print("OUT {} {}".format(list(reversed(list(str(modes)))), a))
+  # print("OUT {} {} rel={}".format(list(reversed(list(str(modes)))), a, prog.relative_base))
   return a
 
 def jump_non_zero(prog, modes):
