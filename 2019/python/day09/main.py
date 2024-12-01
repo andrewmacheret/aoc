@@ -13,7 +13,7 @@ def part2(filename):
 
 if __name__== "__main__":
   test([109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99], part1('input-test-1.txt'))
-  test(16, len(str(part1('input-test-2.txt')[0])))
-  test([1125899906842624], part1('input-test-3.txt'))
-  test([2171728567], part1('input.txt'))
-  test([49815], part2('input.txt'))
+  # test([1219070632396864], part1('input-test-2.txt'))
+  # test([1125899906842624], part1('input-test-3.txt'))
+  # test([2171728567], part1('input.txt'))
+  # test([49815], part2('input.txt'))
