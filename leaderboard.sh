@@ -11,7 +11,7 @@ SORT="$3"
 
 echo "> YEAR=$YEAR DAY=$DAY SORT=$SORT" >&2
 
-COOKIES="$( ./get-cookies.py https://adventofcode.com )"
+COOKIES="$( ./get-cookies.py adventofcode.com )"
 LEADERBOARD="$( curl -s -H "Cookie: $COOKIES" "https://adventofcode.com/$YEAR/leaderboard/private/view/493635.json" )"
 
 (
