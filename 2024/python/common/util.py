@@ -171,6 +171,16 @@ ascii_mappings = {
 }
 
 
+UP = (0, -1)
+DOWN = (0, 1)
+LEFT = (-1, 0)
+RIGHT = (1, 0)
+UP_LEFT = (-1, -1)
+UP_RIGHT = (1, -1)
+DOWN_LEFT = (-1, 1)
+DOWN_RIGHT = (1, 1)
+
+
 DIRS_4 = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 DIRS_8 = [(x, y) for x in (-1, 0, 1) for y in (-1, 0, 1) if not (x == y == 0)]
 DIAG = [(1, 1), (1, -1), (-1, -1), (-1, 1)]
