@@ -9,10 +9,6 @@
 from common.util import *
 
 
-def load_custom(file):
-  return [line.split(',') for line in load(file)]
-
-
 def solve(part, file):
   # data = load_ints(file)
   # data = load_custom(file)
@@ -20,9 +16,12 @@ def solve(part, file):
   # data = load_csv(file)
   data = load(file)
 
-  #
+  total = 0
+  for line in data:
+    total += 0
 
-  print(data)
+  #print(data)
+  return total
 
 
 ### THE REST IS TESTS ###
