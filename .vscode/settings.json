@@ -38,7 +38,7 @@
       },
       {
         "match": ".*/main\\.jq$",
-        "cmd": "cd ${fileDirname}; ./run.sh",
+        "cmd": "cd ${fileDirname}; time ./run.sh",
       }
     ]
   },

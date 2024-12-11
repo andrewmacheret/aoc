@@ -10,13 +10,13 @@ def solve(steps, file):
     for k,v in nodes.items():
       if k == 0:
         next_nodes[1] += v
-      elif (x := len(s := str(k))) % 2 == 0:
-        next_nodes[int(s[:x//2])] += v
-        next_nodes[int(s[x//2:])] += v
+      elif (x := len(s := str(k))) & 1 == 0:
+        next_nodes[int(s[:x>>1])] += v
+        next_nodes[int(s[x>>1:])] += v
       else:
         next_nodes[k*2024] += v
     nodes = next_nodes
-  return sum(next_nodes.values())
+  return sum(nodes.values())
 
 
 ### THE REST IS TESTS ###
