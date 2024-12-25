@@ -32,7 +32,24 @@ def run(mem, gates):
   return res
 
 
-def solve(part, file):
+@cache
+def expected_add(i):
+  if i == 0:
+    return f'(x00 XOR y00)'
+  elif i == 1:
+    return f'((x00 AND y00) XOR (x01 XOR y01))'
+  else:
+    # using the last expected value
+    # replace second to last XOR with AND
+    last = expected_add(i-1)
+    j = last.rfind('XOR', 0, last.rfind('XOR')-1)
+    carry = last[:j] + 'AND' + last[j+3:]
+    return f'(({carry} OR (x{i-1:02d} AND y{i-1:02d})) XOR (x{i:02d} XOR y{i:02d}))'
+
+def expected_and(i):
+  return f'(x{i:02d} AND y{i:02d})'
+
+def solve(file, expected_op=None):
   data = load_blocks(file)
   mem = defaultdict()
   for line in data[0]:
@@ -44,44 +61,29 @@ def solve(part, file):
     a, op, b, _, c = line.split(' ')
     gates[c] = (op, a, b)
 
-  if part == 0:
+  if not expected_op:
     return run(mem, gates)
 
-  def dfs_gate2(c):
+  def build_actual(c):
     if c in gates:
       op,a,b = gates[c]
-      a,b = sorted([dfs_gate2(a),dfs_gate2(b)])
+      a,b = sorted([build_actual(a), build_actual(b)])
       return f'({a} {op} {b})'
     return c
 
+  def build_actual_safe(c):
+    try:
+      return build_actual(c)
+    except:
+      return "broken"
+
   def check(end):
-    carry = None
-    for i in range(end):
-      z = f"z{i:02d}"
-      c = f"c{i:02d}"
-      try:
-        s = dfs_gate2(z)
-      except:
-        # print(f'Failed at {z}')
-        return False
-      
-      if i > 1:
-        expected = f'(({carry} OR (x{i-1:02d} AND y{i-1:02d})) XOR (x{i:02d} XOR y{i:02d}))'
-        if s != expected and i not in (17,24):
-          # print(f'ACT: {z} = {s}')
-          # print(f'EXP: {z} = {expected}')
-          return False
+    return all(build_actual_safe(f"z{i:02d}") == expected_op(i) for i in range(end))
 
-      if i == 0:
-        carry = '(x00 AND y00)'
-      else:
-        # replace second to last XOR with AND
-        j = s.rfind('XOR', 0, s.rfind('XOR')-1)
-        carry = s[:j] + 'AND' + s[j+3:]
-    return True
-
+  max_z = max(int(k[1:]) for k in gates if k[0] == 'z')
+  print(f'Max z: {max_z}')
   swaps = []
-  for r in range(1,46):
+  for r in range(1,max_z+1):
     if not check(r):
       print(f'Failed at {r}')
       for a,b in permutations(gates,2):
@@ -101,7 +103,8 @@ def solve(part, file):
 if __name__ == "__main__":
   change_dir(__file__)
 
-  test(2024, solve(part=0, file='input-test-1'))
-  test(49430469426918, solve(part=0, file='input-real'))
+  test(2024, solve(file='input-test-1'))
+  test(49430469426918, solve(file='input-real'))
 
-  test('fbq,pbv,qff,qnw,qqp,z16,z23,z36', solve(part=1, file='input-real'))
+  test('z00,z01,z02,z05', solve(expected_op=expected_and, file='input-test-2'))
+  test('fbq,pbv,qff,qnw,qqp,z16,z23,z36', solve(expected_op=expected_add, file='input-real'))
