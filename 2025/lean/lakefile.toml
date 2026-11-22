@@ -1,0 +1,17 @@
+name = "aoc-2025"
+version = "0.1.0"
+defaultTargets = [
+    "day1",
+    "day2",
+]
+
+[[lean_lib]]
+name = "Common"
+
+[[lean_exe]]
+name = "day1"
+root = "Day1.Main"
+
+[[lean_exe]]
+name = "day2"
+root = "Day2.Main"
