@@ -6,4 +6,7 @@ def accumulate {α β : Type} (ints : Array α) (init : β) (op : β -> α -> β
     (next, out.push next)
   ).2
 
+def repeatChar (n : Nat) (c : Char) : String :=
+  String.ofList (List.replicate n c)
+
 end Common.Util

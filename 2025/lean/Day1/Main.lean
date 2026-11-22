@@ -1,5 +1,6 @@
 import Common.Io
 import Common.Util
+import Common.Test
 
 def safe_mod (x : Int) (mod : Int) : Int := ((x % mod) + mod) % mod
 
@@ -29,7 +30,7 @@ def solve2 (lines : Array String) : Int := simulate lines ticks2
 
 
 def main : IO Unit := do
-  IO.println (3, solve1 (<- Common.Io.readLines "Day1/input-test1.txt"))
-  IO.println (1052, solve1 (<- Common.Io.readLines "Day1/input.txt"))
-  IO.println (6, solve2 (<- Common.Io.readLines "Day1/input-test1.txt"))
-  IO.println (6295, solve2 (<- Common.Io.readLines "Day1/input.txt"))
+  Common.Test.test 3 (solve1 (<- Common.Io.readLines "Day1/input-test1.txt"))
+  Common.Test.test 1052 (solve1 (<- Common.Io.readLines "Day1/input.txt"))
+  Common.Test.test 6 (solve2 (<- Common.Io.readLines "Day1/input-test1.txt"))
+  Common.Test.test 6295 (solve2 (<- Common.Io.readLines "Day1/input.txt"))
