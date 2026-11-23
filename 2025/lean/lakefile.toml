@@ -3,6 +3,7 @@ version = "0.1.0"
 defaultTargets = [
     "day1",
     "day2",
+    "day3",
 ]
 
 [[lean_lib]]
@@ -15,3 +16,7 @@ root = "Day1.Main"
 [[lean_exe]]
 name = "day2"
 root = "Day2.Main"
+
+[[lean_exe]]
+name = "day3"
+root = "Day3.Main"
