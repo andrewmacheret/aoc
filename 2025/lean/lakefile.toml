@@ -4,6 +4,7 @@ defaultTargets = [
     "day1",
     "day2",
     "day3",
+    "day4",
 ]
 
 [[lean_lib]]
@@ -20,3 +21,7 @@ root = "Day2.Main"
 [[lean_exe]]
 name = "day3"
 root = "Day3.Main"
+
+[[lean_exe]]
+name = "day4"
+root = "Day4.Main"
