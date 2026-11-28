@@ -1,10 +1,7 @@
 import Common.Io
-import Common.Util
 import Common.Test
 
-open Std
 open Common.Io
-open Common.Util
 open Common.Test
 
 def DIRS_8 : List (Int × Int) := [
